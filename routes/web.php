@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/getSplash/{page}',[
+    'uses' => 'ResumeController@getSplash',
+    'as' => 'splash'
+]);
