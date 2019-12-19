@@ -134,6 +134,11 @@ return [
     |
     */
 
+    /*
+    We need to set the error log to Heroku error log
+    */
+    'log' => 'errorlog',
+
     'providers' => [
 
         /*
