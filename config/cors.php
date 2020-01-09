@@ -20,7 +20,9 @@ return [
         'allow_credentials' => false,
 
         'allow_origins' => [
-            '*',
+            'http://gutierrez-jerald-cv.herokuapp.com',
+            'https://gutierrez-jerald-cv.herokuapp.com',
+            'http://localhost'
         ],
 
         'allow_methods' => [
