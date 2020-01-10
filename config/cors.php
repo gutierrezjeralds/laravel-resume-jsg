@@ -24,7 +24,8 @@ return [
             'http://gutierrez-jerald-cv.herokuapp.com',
             'https://gutierrez-jerald-cv.herokuapp.com',
             'http://localhost:3000',
-            'http://localhost:9000'
+            'http://localhost:9000',
+            'https://www.apirequest.io'
         ],
 
         'allow_methods' => [
