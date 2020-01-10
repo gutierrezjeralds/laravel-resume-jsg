@@ -22,7 +22,8 @@ return [
         'allow_origins' => [
             'http://gutierrez-jerald-cv.herokuapp.com',
             'https://gutierrez-jerald-cv.herokuapp.com',
-            'http://localhost'
+            'http://localhost:3000',
+            'http://localhost:9000'
         ],
 
         'allow_methods' => [
