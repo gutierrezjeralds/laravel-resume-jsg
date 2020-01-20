@@ -122,7 +122,7 @@ class SplashTableSeeder extends Seeder
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                "page"          =>  "404",
+                "page"          =>  "notFound-404",
                 "category"      =>  "title",
                 "string"        =>  "Page not Found",
                 "fa_icon"       =>  "",
@@ -131,7 +131,7 @@ class SplashTableSeeder extends Seeder
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                "page"          =>  "404",
+                "page"          =>  "notFound-404",
                 "category"      =>  "description",
                 "string"        =>  "Sorry but it looks like this page no longer available.",
                 "fa_icon"       =>  "",
@@ -140,7 +140,7 @@ class SplashTableSeeder extends Seeder
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                "page"          =>  "404",
+                "page"          =>  "notFound-404",
                 "category"      =>  "anchor",
                 "string"        =>  "Back To Home",
                 "fa_icon"       =>  "home",
