@@ -19,3 +19,7 @@ Route::get('/getSplash/{page}',[
     'uses' => 'ResumeController@getSplash',
     'as' => 'splash'
 ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
