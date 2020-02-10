@@ -15,13 +15,13 @@ class CreateSplashTable extends Migration
     {
         Schema::create('splash', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('page');
-            $table->string('title');
-            $table->string('description');
-            $table->string('slogan');
-            $table->string('button_string');
-            $table->string('button_link');
-            $table->string('button_icon');
+            $table->string('page')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('slogan')->nullable();
+            $table->string('button_string')->nullable();
+            $table->string('button_link')->nullable();
+            $table->string('button_icon')->nullable();
             $table->timestamps();
         });
     }
