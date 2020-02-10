@@ -25,7 +25,7 @@ Route::get('/getSplash/{page}',[
     'as' => 'splash'
 ]);
 
-Route::post('/setSplash', array('before' => 'csrf'), [
+Route::post('/setSplash',[
     'uses' => 'ResumeController@setSplash',
     'as' => 'splash'
 ]);
