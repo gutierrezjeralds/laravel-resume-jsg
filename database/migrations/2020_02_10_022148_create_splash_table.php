@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSplashesTable extends Migration
+class CreateSplashTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateSplashesTable extends Migration
      */
     public function up()
     {
-        Schema::create('splashes', function (Blueprint $table) {
+        Schema::create('splash', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('page');
-            $table->string('category'); // Title, Description, Slogan, Anchor
-            $table->string('string');
-            $table->string('fa_icon');
-            $table->string('uri');
+            $table->string('title');
+            $table->string('description');
+            $table->string('slogan');
+            $table->string('button_string');
+            $table->string('button_link');
+            $table->string('button_icon');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateSplashesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('splashes');
+        Schema::dropIfExists('splash');
     }
 }

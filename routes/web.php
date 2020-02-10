@@ -19,8 +19,3 @@ Route::get('/getSplash/{page}',[
     'uses' => 'ResumeController@getSplash',
     'as' => 'splash'
 ]);
-
-Route::get('/getSplash/{page}/{cat}',[
-    'uses' => 'ResumeController@getSplashCat',
-    'as' => 'splashCat'
-]);

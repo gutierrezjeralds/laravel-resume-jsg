@@ -11,8 +11,4 @@ class ResumeController extends Controller
     public function getSplash(Request $request, $page){
         return Splash::where('page', $page) -> get();
     }
-
-    public function getSplashCat(Request $request, $page, $cat){
-        return Splash::where('page', $page)->where('category', $cat) -> get();
-    }
 }
