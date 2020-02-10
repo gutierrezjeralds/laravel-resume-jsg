@@ -60,8 +60,8 @@ class SplashTableSeeder extends Seeder
             [
                 "page"          =>  "notFound-404",
                 "title"         =>  "Page not Found",
-                "description"   =>  "Or reach out to me directly",
-                "slogan"        =>  "Sorry but it looks like this page no longer available.",
+                "description"   =>  "Sorry but it looks like this page no longer available.",
+                "slogan"        =>  "",
                 "button_string" =>  "Back To Home",
                 "button_link"   =>  "/",
                 "button_icon"   =>  "home",
