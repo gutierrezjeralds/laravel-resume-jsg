@@ -9,6 +9,10 @@ use App\Splash;
 
 class ResumeController extends Controller
 {
+    public function getCsrfToken(Request $request){
+        return csrf_token();
+    }
+
     public function getSplash(Request $request, $page){
         return Splash::where('page', $page) -> get();
     }
