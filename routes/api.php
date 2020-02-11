@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['json.response']], function () {
+
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // public routes
+    // Route::get('/get-csrf-token', 'ResumeController@getCsrfToken')->name('token.api');
+    Route::get('/getSplash/{page}', 'ResumeController@getSplash')->name('getSplash.api');
+    Route::get('/setSplash', 'ResumeController@setSplash')->name('setSplash.api');
+
 });
