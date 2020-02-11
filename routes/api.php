@@ -22,6 +22,6 @@ Route::group(['middleware' => ['json.response']], function () {
     // public routes
     // Route::get('/get-csrf-token', 'ResumeController@getCsrfToken')->name('token.api');
     Route::get('/getSplash/{page}', 'ResumeController@getSplash')->name('getSplash.api');
-    Route::get('/setSplash', 'ResumeController@setSplash')->name('setSplash.api');
+    Route::post('/setSplash', 'ResumeController@setSplash')->name('setSplash.api');
 
 });
