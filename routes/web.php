@@ -14,8 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/get-csrf-token',[
-    'uses' => 'ResumeController@getCsrfToken',
-    'as' => 'token'
-]);
