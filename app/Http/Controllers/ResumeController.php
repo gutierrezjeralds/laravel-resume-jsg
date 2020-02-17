@@ -9,6 +9,7 @@ use App\Splash;
 
 class ResumeController extends Controller
 {
+    // Splash ------------------->
     public function getSplash(Request $request, $page){
         return Splash::where('page', $page) -> get();
     }
@@ -38,4 +39,28 @@ class ResumeController extends Controller
 
         return response()->json(['success' => $set], 200);
     }
+    // Splash ------------------->
+
+    // Home --------------------->
+    public function getHome(Request $request) {
+        $get = DB::table('home')->get();
+        return response()->json($get, 200);
+    }
+
+    public function setHome(Request $request) {
+        $key = $request->input('key');
+        $title = $request->input('title');
+        $description = $request->input('description');
+
+        $set = DB::table("home")->updateOrInsert(
+            ['id' => $key],
+            [
+                'title'         =>  $title,
+                'description'   =>  $description
+            ]
+        );
+
+        return response()->json(['success' => $set], 200);
+    }
+    // Home --------------------->
 }
