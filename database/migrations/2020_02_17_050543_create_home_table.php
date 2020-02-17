@@ -16,7 +16,7 @@ class CreateHomeTable extends Migration
         Schema::create('home', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description', 1000)->nullable();
             $table->timestamps();
         });
     }
