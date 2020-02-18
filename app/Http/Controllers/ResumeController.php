@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use DB;
 use App\Splash;
+use App\Skill;
 
 class ResumeController extends Controller
 {
@@ -63,4 +64,32 @@ class ResumeController extends Controller
         return response()->json(['success' => $set], 200);
     }
     // Home --------------------->
+
+    // Skills ------------------->
+    public function getSkills(Request $request) {
+        return Skill::OrderBy( 'percent', 'desc' ) -> OrderBy( 'start_in', 'asc' ) -> get();
+    }
+
+    public function setSkills(Request $request){
+        $key = $request->input('key');
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $percent = $request->input('percent');
+        $start_in = $request->input('start_in');
+        $end_in = $request->input('end_in');
+
+        $set = DB::table('skills')->updateOrInsert(
+            ['id' => $key],
+            [
+                'title'         => $title,
+                'description'   => $description,
+                'percent'       => $percent,
+                'start_in'      => $start_in,
+                'end_in'        => $end_in
+            ]
+        );
+
+        return response()->json(['success' => $set], 200);
+    }
+    // Skills ------------------->
 }
