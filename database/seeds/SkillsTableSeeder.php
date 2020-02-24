@@ -14,7 +14,7 @@ class SkillsTableSeeder extends Seeder
     {
         /*
             end_in if empty 
-                Carbon::now()->format('0000-00-00 00:00:00')
+                Carbon::now()->format('5000-12-31 00:00:00')
                 // This will be cheat code for present date
         */
         $skills = [
@@ -23,7 +23,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -32,7 +32,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -41,7 +41,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -50,7 +50,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -59,7 +59,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -68,7 +68,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -77,7 +77,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  100,
                 "start_in"      =>  Carbon::now()->format('2018-01-08 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -86,7 +86,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  98,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -95,7 +95,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  95,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -104,7 +104,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  90,
                 "start_in"      =>  Carbon::now()->format('2019-06-10 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -113,7 +113,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "Electronic Direct Mail",
                 "percent"       =>  90,
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -140,7 +140,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  80,
                 "start_in"      =>  Carbon::now()->format('2019-06-10 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -176,7 +176,7 @@ class SkillsTableSeeder extends Seeder
                 "description"   =>  "",
                 "percent"       =>  75,
                 "start_in"      =>  Carbon::now()->format('2019-10-14 00:00:00'),
-                "end_in"        =>  Carbon::now()->format('0001-01-01 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ]
