@@ -125,6 +125,7 @@ class ResumeController extends Controller
                                     if ( $projects->category == "development" ) {
                                         // Array for Projects
                                         $projectsArr[] = [
+                                            'id'            => $projects->id,
                                             'title'         => $projects->title,
                                             'description'   => $projects->description
                                         ];
@@ -135,6 +136,7 @@ class ResumeController extends Controller
 
                         // Array for Job Description
                         $jobDescArr[] = [
+                            'id'                => $jobDesc->id,
                             'title'             => $jobDesc->title,
                             'description'       => $jobDesc->description,
                             'sub_description'   => $jobDesc->sub_description,
@@ -151,6 +153,7 @@ class ResumeController extends Controller
                     if ( $expTag == $achievement->tag ) {
                         // Array for achievement
                         $achievementArr[] = [
+                            'id'        => $achievement->id,
                             'title'     => $achievement->title,
                             'start_in'  => $achievement->start_in
                         ];
