@@ -92,4 +92,91 @@ class ResumeController extends Controller
         return response()->json(['success' => $set], 200);
     }
     // Skills ------------------->
+
+    // Experience ------------------->
+    public function getAllExperience(Request $request) {
+        try {
+            $isSingle = $request->input('is_single');
+            $getExp = [];
+            // Check if need to get all records or not - base in reuqest
+            if ( $isSingle == 1 ) {
+                $getExp[] = DB::table('experience')->orderBy('start_in', 'desc')->first();
+            } else {
+                $getExp = DB::table('experience')->orderBy('start_in', 'desc')->get();
+            }
+            // Table's
+            $getJobDesc = DB::table('job_descriptions')->get();
+            $getProjects = DB::table('projects')->where('category', 'development')->orderBy('start_in', 'desc')->get();
+            $getAchievement = DB::table('achievement')->orderBy('start_in', 'desc')->get();
+            $arr = [];
+
+            foreach ( $getExp as $exp ) {
+                $expTag = $exp->tag;
+                // New array for job description
+                $jobDescArr = [];
+                foreach ( $getJobDesc as $jobDesc ) {
+                    $jdIsProject = $jobDesc->isProject;
+                    if ( $expTag == $jobDesc->tag ) {
+                        // New array for projects that involved in job descriptions
+                        $projectsArr = [];
+                        if ( $jdIsProject == 1 ) {
+                            foreach ( $getProjects as $projects ) {
+                                if ( $expTag == $projects->tag ) {
+                                    if ( $projects->category == "development" ) {
+                                        // Array for Projects
+                                        $projectsArr[] = [
+                                            'title'         => $projects->title,
+                                            'description'   => $projects->description
+                                        ];
+                                    }
+                                }
+                            }
+                        }
+
+                        // Array for Job Description
+                        $jobDescArr[] = [
+                            'title'             => $jobDesc->title,
+                            'description'       => $jobDesc->description,
+                            'sub_description'   => $jobDesc->sub_description,
+                            'isProject'         => $jobDesc->isProject,
+                            'order'             => $jobDesc->order,
+                            'projects'          => $projectsArr
+                        ];
+                    }
+                }
+
+                // New array for achievement
+                $achievementArr = [];
+                foreach ( $getAchievement as $achievement ) {
+                    if ( $expTag == $achievement->tag ) {
+                        // Array for achievement
+                        $achievementArr[] = [
+                            'title'     => $achievement->title,
+                            'start_in'  => $achievement->start_in
+                        ];
+                    }
+                }
+
+                // Array for Global Experience
+                $arr[] = [
+                    'id'                => $exp->id,
+                    'tag'               => $exp->tag,
+                    'company'           => $exp->company,
+                    'position'          => $exp->position,
+                    'address'           => $exp->address,
+                    'description'       => $exp->description,
+                    'job_description'   => $jobDescArr,
+                    'achievement'       => $achievementArr,
+                    'start_in'          => $exp->start_in,
+                    'end_in'            => $exp->end_in
+                ];
+            }
+
+            return response()->json($arr, 200);
+
+        } catch (\Exception $e) {
+            return "fail";
+        }
+    }
+    // Experience ------------------->
 }

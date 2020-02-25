@@ -27,5 +27,6 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/setHome', 'ResumeController@setHome')->name('setHome.api');
     Route::get('/getSkills', 'ResumeController@getSkills')->name('getSkills.api');
     Route::post('/setSkills', 'ResumeController@setSkills')->name('setSkills.api');
+    Route::get('/get-all-experience', 'ResumeController@getAllExperience')->name('getAllExperience.api');
 
 });
