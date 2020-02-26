@@ -182,4 +182,10 @@ class ResumeController extends Controller
         }
     }
     // Experience ------------------->
+
+    // Educational ------------------->
+    public function getEducational(Request $request) {
+        return DB::table('educational')->orderBy('start_in', 'desc')->get();
+    }
+    // Educational ------------------->
 }
