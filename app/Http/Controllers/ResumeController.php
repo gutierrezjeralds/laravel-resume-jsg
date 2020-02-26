@@ -102,12 +102,12 @@ class ResumeController extends Controller
             if ( $isSingle == 1 ) {
                 $getExp[] = DB::table('experience')->orderBy('start_in', 'desc')->first();
             } else {
-                $getExp = DB::table('experience')->orderBy('start_in', 'desc')->get();
+                $getExp = DB::table('experience')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
             }
             // Table's
-            $getJobDesc = DB::table('job_descriptions')->get();
-            $getProjects = DB::table('projects')->where('category', 'development')->orderBy('start_in', 'desc')->get();
-            $getAchievement = DB::table('achievement')->orderBy('start_in', 'desc')->get();
+            $getJobDesc = DB::table('job_descriptions')->orderBy('order', 'asc')->orderBy('tag', 'asc')->get();
+            $getProjects = DB::table('projects')->where('category', 'development')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
+            $getAchievement = DB::table('achievement')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
             $arr = [];
 
             foreach ( $getExp as $exp ) {
