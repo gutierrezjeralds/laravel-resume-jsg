@@ -202,7 +202,7 @@ class ResumeController extends Controller
     }
     
     public function getProjectsTitle(Request $request) {
-        return DB::table('projects')->select('id', 'title')->get();
+        return DB::table('projects')->select('id', 'title', 'tag')->get();
     }
     
     public function getProjectById(Request $request) {
