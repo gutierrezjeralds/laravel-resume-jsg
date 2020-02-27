@@ -192,7 +192,13 @@ class ResumeController extends Controller
     // Projects / Portfolio ------------------->
     public function getProjects(Request $request) {
         $category = $request->input('category');
-        return DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
+        if ( !empty( $category ) ) {
+            return DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
+        } else {
+            return DB::table('projects')->orderBy('start_in', 'desc')->get();
+        }
+
+        return false;
     }
     // Projects / Portfolio ------------------->
 }
