@@ -200,5 +200,14 @@ class ResumeController extends Controller
 
         return false;
     }
+    
+    public function getProjectsTitle(Request $request) {
+        return DB::table('projects')->select('id', 'title')->get();
+    }
+    
+    public function getProjectById(Request $request) {
+        $id = $request->input('id');
+        return DB::table('projects')->where('id', $id)->get();
+    }
     // Projects / Portfolio ------------------->
 }
