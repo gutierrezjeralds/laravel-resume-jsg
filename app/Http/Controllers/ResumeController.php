@@ -188,4 +188,11 @@ class ResumeController extends Controller
         return DB::table('educational')->orderBy('start_in', 'desc')->get();
     }
     // Educational ------------------->
+
+    // Projects / Portfolio ------------------->
+    public function getProjects(Request $request) {
+        $category = $request->input('category');
+        return DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
+    }
+    // Projects / Portfolio ------------------->
 }

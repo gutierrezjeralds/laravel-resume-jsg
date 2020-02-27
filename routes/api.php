@@ -29,5 +29,6 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/setSkills', 'ResumeController@setSkills')->name('setSkills.api');
     Route::get('/get-all-experience', 'ResumeController@getAllExperience')->name('getAllExperience.api');
     Route::get('/getEducational', 'ResumeController@getEducational')->name('getEducational.api');
+    Route::get('/getProjects', 'ResumeController@getProjects')->name('getProjects.api');
 
 });
