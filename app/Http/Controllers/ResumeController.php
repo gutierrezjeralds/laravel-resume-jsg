@@ -181,6 +181,10 @@ class ResumeController extends Controller
             return "fail";
         }
     }
+
+    public function getExperienceTag(Request $request) {
+        return DB::table('experience')->select('id', 'company', 'tag')->get();
+    }
     // Experience ------------------->
 
     // Educational ------------------->
