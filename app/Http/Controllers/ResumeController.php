@@ -143,6 +143,8 @@ class ResumeController extends Controller
                                                     }
                                                 }
                                             }
+
+                                            rtrim( $skillArr, ',' );
                                         }
 
                                         // Array for Projects
@@ -220,10 +222,57 @@ class ResumeController extends Controller
     // Projects / Portfolio ------------------->
     public function getProjects(Request $request) {
         $category = $request->input('category');
+        $getSkills = DB::table('skills')->select('title', 'code')->get();
+        // Project data
         if ( !empty( $category ) ) {
-            return DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
+            $getProjects = DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
+            
         } else {
-            return DB::table('projects')->orderBy('start_in', 'desc')->get();
+            $getProjects = DB::table('projects')->orderBy('start_in', 'desc')->get();
+        }
+
+        // Data concat
+        if ( !empty( $getProjects ) ) {
+            $arr = [];
+
+            // Array for skills
+            foreach ( $getProjects as $projects ) {
+                $skillArr = "";
+                if ( !empty( $projects->skills ) ) {
+                    $items = explode(", ", $projects->skills);
+                    $count = 0;
+                    foreach ( $items as $item ) {
+                        $count+= 1;
+                        foreach ( $getSkills as $skill ) {
+                            if ( $skill->code == $item ) {
+                                if ( $count >= count($items) ) {
+                                    $skillArr .= $skill->title;
+                                } else {
+                                    $skillArr .= $skill->title . ', ';
+                                }
+                            }
+                        }
+                    }
+    
+                    rtrim( $skillArr, ',' );
+                }
+
+                // Array for Global Experience
+                $arr[] = [
+                    'id'            => $projects->id,
+                    'tag'           => $projects->tag,
+                    'company'       => $projects->company,
+                    'title'         => $projects->title,
+                    'category'      => $projects->category,
+                    'skills'        => $skillArr,
+                    'description'   => $projects->description,
+                    'image'         => $projects->image,
+                    'website'       => $projects->website,
+                    'start_in'      => $projects->start_in,
+                ];
+            }
+
+            return response()->json($arr, 200);
         }
 
         return false;
