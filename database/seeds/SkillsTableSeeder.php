@@ -19,7 +19,7 @@ class SkillsTableSeeder extends Seeder
         */
         $skills = [
             [
-                "title"         =>  "HTML/HTML5",
+                "title"         =>  "HTML",
                 "description"   =>  "",
                 "percent"       =>  100,
                 "code"          =>  "1AHT",
@@ -29,10 +29,30 @@ class SkillsTableSeeder extends Seeder
                 "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                "title"         =>  "CSS/CSS3",
+                "title"         =>  "HTML5",
+                "description"   =>  "",
+                "percent"       =>  100,
+                "code"          =>  "1BHT",
+                "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
+                "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                "title"         =>  "CSS",
                 "description"   =>  "",
                 "percent"       =>  100,
                 "code"          =>  "1ACS",
+                "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
+                "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
+                "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"    =>  Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                "title"         =>  "CSS3",
+                "description"   =>  "",
+                "percent"       =>  100,
+                "code"          =>  "1BCS",
                 "start_in"      =>  Carbon::now()->format('2015-08-20 00:00:00'),
                 "end_in"        =>  Carbon::now()->format('5000-12-31 00:00:00'),
                 "created_at"    =>  Carbon::now()->format('Y-m-d H:i:s'),
