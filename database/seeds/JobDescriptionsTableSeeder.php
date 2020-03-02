@@ -35,8 +35,8 @@ class JobDescriptionsTableSeeder extends Seeder
             ],
             [
                 "tag"                       =>  "kpph",
-                "title"                     =>  "Using SoapUI for testing",
-                "description"               =>  "EDM",
+                "title"                     =>  "Creating eDM template",
+                "description"               =>  "SoapUI",
                 "sub_description"           =>  "REST API",
                 "isProject"                 =>  0,
                 "order"                     =>  3,
@@ -88,6 +88,16 @@ class JobDescriptionsTableSeeder extends Seeder
                 "title"                     =>  "Maintained Think Website",
                 "description"               =>  "",
                 "sub_description"           =>  "",
+                "isProject"                 =>  0,
+                "order"                     =>  2,
+                "created_at"                =>  Carbon::now()->format('Y-m-d H:i:s'),
+                "updated_at"                =>  Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                "tag"                       =>  "tssi",
+                "title"                     =>  "Creating eDM template",
+                "description"               =>  "InfusionSoft",
+                "sub_description"           =>  "SendGrid",
                 "isProject"                 =>  0,
                 "order"                     =>  2,
                 "created_at"                =>  Carbon::now()->format('Y-m-d H:i:s'),

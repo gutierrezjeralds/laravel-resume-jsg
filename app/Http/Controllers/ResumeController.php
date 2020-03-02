@@ -75,6 +75,7 @@ class ResumeController extends Controller
         $title = $request->input('title');
         $description = $request->input('description');
         $percent = $request->input('percent');
+        $code = $request->input('code');
         $start_in = $request->input('start_in');
         $end_in = $request->input('end_in');
 
@@ -84,6 +85,7 @@ class ResumeController extends Controller
                 'title'         => $title,
                 'description'   => $description,
                 'percent'       => $percent,
+                'code'          => $code,
                 'start_in'      => $start_in,
                 'end_in'        => $end_in
             ]
@@ -108,6 +110,7 @@ class ResumeController extends Controller
             $getJobDesc = DB::table('job_descriptions')->orderBy('order', 'asc')->orderBy('tag', 'asc')->get();
             $getProjects = DB::table('projects')->where('category', 'development')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
             $getAchievement = DB::table('achievement')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
+            $getSkills = DB::table('skills')->select('title', 'code')->get();
             $arr = [];
 
             foreach ( $getExp as $exp ) {
@@ -123,10 +126,30 @@ class ResumeController extends Controller
                             foreach ( $getProjects as $projects ) {
                                 if ( $expTag == $projects->tag ) {
                                     if ( $projects->category == "development" ) {
+                                        // Array for skills
+                                        $skillArr = "";
+                                        if ( !empty( $projects->skills ) ) {
+                                            $items = explode(", ", $projects->skills);
+                                            $count = 0;
+                                            foreach ( $items as $item ) {
+                                                $count+= 1;
+                                                foreach ( $getSkills as $skill ) {
+                                                    if ( $skill->code == $item ) {
+                                                        if ( $count >= count($items) ) {
+                                                            $skillArr .= $skill->title;
+                                                        } else {
+                                                            $skillArr .= $skill->title . ', ';
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
                                         // Array for Projects
                                         $projectsArr[] = [
                                             'id'            => $projects->id,
                                             'title'         => $projects->title,
+                                            'skills'        => $skillArr,
                                             'description'   => $projects->description
                                         ];
                                     }
@@ -178,6 +201,7 @@ class ResumeController extends Controller
             return response()->json($arr, 200);
 
         } catch (\Exception $e) {
+            // print_r($e);
             return "fail";
         }
     }

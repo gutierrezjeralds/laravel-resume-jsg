@@ -19,8 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('company')->nullable();
             $table->string('title')->nullable();
             $table->string('category')->nullable();
+            $table->string('skills')->nullable();
             $table->string('description')->nullable();
-            $table->string('sub_description')->nullable();
             $table->string('image')->nullable();
             $table->string('website')->nullable();
             $table->date('start_in')->nullable();
