@@ -67,7 +67,22 @@ class ResumeController extends Controller
 
     // Skills ------------------->
     public function getSkills(Request $request) {
-        return Skill::OrderBy( 'percent', 'desc' ) -> OrderBy( 'start_in', 'asc' ) -> get();
+        return Skill::OrderBy( 'percent', 'desc' )->OrderBy( 'start_in', 'asc' )->OrderBy( 'title', 'asc' ) -> get();
+    }
+
+    public function getSkills4MultiSelect(Request $request) {
+        $getSkills = DB::table('skills')->orderBy('percent', 'desc')->orderBy('start_in', 'asc')->orderBy('title', 'asc')->get();
+        $arr = [];
+
+        foreach ( $getSkills as $skills ) {
+            $arr[] = [
+                "id"        =>  $skills->id,
+                "value"     =>  $skills->code,
+                "label"     =>  $skills->title
+            ];
+        }
+
+        return response()->json($arr, 200);
     }
 
     public function setSkills(Request $request){

@@ -33,5 +33,6 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/getProjectsTitle', 'ResumeController@getProjectsTitle')->name('getProjectsTitle.api');
     Route::get('/getProjectById', 'ResumeController@getProjectById')->name('getProjectById.api');
     Route::get('/getExperienceTag', 'ResumeController@getExperienceTag')->name('getExperienceTag.api');
+    Route::get('/multi-select-skills', 'ResumeController@getSkills4MultiSelect')->name('getSkills4MultiSelect.api');
     
 });
