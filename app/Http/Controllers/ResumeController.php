@@ -77,8 +77,8 @@ class ResumeController extends Controller
         foreach ( $getSkills as $skills ) {
             $arr[] = [
                 "id"        =>  $skills->id,
-                "value"     =>  $skills->code,
-                "label"     =>  $skills->title
+                "code"      =>  $skills->code,
+                "title"     =>  $skills->title
             ];
         }
 
@@ -125,7 +125,6 @@ class ResumeController extends Controller
             $getJobDesc = DB::table('job_descriptions')->orderBy('order', 'asc')->orderBy('tag', 'asc')->get();
             $getProjects = DB::table('projects')->where('category', 'development')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
             $getAchievement = DB::table('achievement')->orderBy('start_in', 'desc')->orderBy('tag', 'asc')->get();
-            $getSkills = DB::table('skills')->select('title', 'code')->get();
             $arr = [];
 
             foreach ( $getExp as $exp ) {
@@ -142,20 +141,16 @@ class ResumeController extends Controller
                                 if ( $expTag == $projects->tag ) {
                                     if ( $projects->category == "development" ) {
                                         // Array for skills
+                                        $skills = $projects->skills;
                                         $skillArr = "";
                                         if ( !empty( $projects->skills ) ) {
-                                            $items = explode(", ", $projects->skills);
                                             $count = 0;
-                                            foreach ( $items as $item ) {
+                                            foreach ( json_decode($skills, true) as $skill ) {
                                                 $count+= 1;
-                                                foreach ( $getSkills as $skill ) {
-                                                    if ( $skill->code == $item ) {
-                                                        if ( $count >= count($items) ) {
-                                                            $skillArr .= $skill->title;
-                                                        } else {
-                                                            $skillArr .= $skill->title . ', ';
-                                                        }
-                                                    }
+                                                if ( $count >= count(json_decode($skills, true)) ) {
+                                                    $skillArr .= $skill['title'];
+                                                } else {
+                                                    $skillArr .= $skill['title'] . ', ';
                                                 }
                                             }
 
@@ -237,7 +232,6 @@ class ResumeController extends Controller
     // Projects / Portfolio ------------------->
     public function getProjects(Request $request) {
         $category = $request->input('category');
-        $getSkills = DB::table('skills')->select('title', 'code')->get();
         // Project data
         if ( !empty( $category ) ) {
             $getProjects = DB::table('projects')->where('category', $category)->orderBy('start_in', 'desc')->get();
@@ -252,20 +246,16 @@ class ResumeController extends Controller
 
             // Array for skills
             foreach ( $getProjects as $projects ) {
+                $skills = $projects->skills;
                 $skillArr = "";
-                if ( !empty( $projects->skills ) ) {
-                    $items = explode(", ", $projects->skills);
+                if ( !empty( $skills ) ) {
                     $count = 0;
-                    foreach ( $items as $item ) {
+                    foreach ( json_decode($skills, true) as $skill ) {
                         $count+= 1;
-                        foreach ( $getSkills as $skill ) {
-                            if ( $skill->code == $item ) {
-                                if ( $count >= count($items) ) {
-                                    $skillArr .= $skill->title;
-                                } else {
-                                    $skillArr .= $skill->title . ', ';
-                                }
-                            }
+                        if ( $count >= count(json_decode($skills, true)) ) {
+                            $skillArr .= $skill['title'];
+                        } else {
+                            $skillArr .= $skill['title'] . ', ';
                         }
                     }
     
