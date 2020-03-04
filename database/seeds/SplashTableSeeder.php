@@ -12,6 +12,9 @@ class SplashTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('splash')->delete();
+
         $splashes = [
             [
                 "page"          =>  "home",

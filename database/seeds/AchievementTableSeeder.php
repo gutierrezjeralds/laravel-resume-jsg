@@ -12,6 +12,9 @@ class AchievementTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('achievement')->delete();
+
         $achievement = [
             [
                 "tag"                   =>  "kpph",

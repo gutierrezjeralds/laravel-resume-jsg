@@ -12,6 +12,9 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('projects')->delete();
+
         $projects = [
             [
                 "tag"                   =>  "kpph",

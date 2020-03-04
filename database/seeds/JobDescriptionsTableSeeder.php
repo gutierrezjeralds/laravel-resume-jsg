@@ -12,6 +12,9 @@ class JobDescriptionsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('job_descriptions')->delete();
+
         $jd = [
             [
                 "tag"                       =>  "kpph",

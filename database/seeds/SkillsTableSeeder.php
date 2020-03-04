@@ -12,6 +12,9 @@ class SkillsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('skills')->delete();
+
         /*
             end_in if empty 
                 Carbon::now()->format('5000-12-31 00:00:00')

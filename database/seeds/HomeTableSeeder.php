@@ -12,6 +12,9 @@ class HomeTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('home')->delete();
+
         $homes = [
             [
                 "title"         =>  "A few fun facts about myself",
