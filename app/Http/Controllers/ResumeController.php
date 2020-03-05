@@ -311,14 +311,13 @@ class ResumeController extends Controller
                 ['id' => $key],
                 [
                     'tag'           => $tag,
-                    'company'       => $company,
-                    'title'         => $title,
-                    'category'      => $category,
-                    'skills'        => $skills,
-                    'description'   => $description,
-                    'image'         => $image,
-                    'website'       => $website,
-                    'start_in'      => $start_in
+                    'company'       => "",
+                    'title'         => "",
+                    'category'      => "",
+                    'skills'        => "",
+                    'description'   => "",
+                    'image'         => "",
+                    'website'       => ""
                 ]
             );
 
