@@ -291,5 +291,77 @@ class ResumeController extends Controller
         $id = $request->input('id');
         return DB::table('projects')->where('id', $id)->get();
     }
+
+    public function setProjects(Request $request) {
+        try {
+            $method         = $request->input('method'); // add or edit or delete
+            $key            = $request->input('key');
+            $tag            = $request->input('tag');
+            $company        = $request->input('company');
+            $title          = $request->input('title');
+            $category       = $request->input('category');
+            $skills         = $request->input('skills');
+            $description    = $request->input('description');
+            $image          = $request->input('image');
+            $website        = $request->input('website');
+            $url            = $website !== "" && $website !== undefined ? ( rtrim($website, '/') ) : ("");
+            $start_in       = $request->input('start_in');
+    
+            if ( $method == 'add' || $method == 1 ) {
+                // Add data
+                $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
+                if ( empty( $duplicate ) ) {
+                    // Continue to add data
+                    $set = DB::table('projects')->insert([
+                        'tag'           => $tag,
+                        'company'       => $company,
+                        'title'         => $title,
+                        'category'      => $category,
+                        'skills'        => $skills,
+                        'description'   => $description,
+                        'image'         => $image,
+                        'website'       => $url,
+                        'start_in'      => $start_in
+                    ]);
+
+                    return "success-add";
+    
+                } else {
+                    // Has duplicate data
+                    return "duplicate";
+                }
+            } else if ( $method == 'edit' || $method == 0 ) {
+                // Edit data
+                $set = DB::table("projects")->updateOrInsert(
+                    ['id' => $key],
+                    [
+                        'tag'           => $tag,
+                        'company'       => $company,
+                        'title'         => $title,
+                        'category'      => $category,
+                        'skills'        => $skills,
+                        'description'   => $description,
+                        'image'         => $image,
+                        'website'       => $url,
+                        'start_in'      => $start_in
+                    ]
+                );
+
+                return "success-edit";
+
+            } else if ( $method == 'delete' || $method == -1 ) {
+                // Edit data
+                $set = DB::table("projects")->where('id', $key)->delete();
+
+                return "success-delete";
+
+            } else {
+                return "fail";
+            }
+        } catch (\Exception $e) {
+            print_r($e);
+            return "fail";
+        }
+    }
     // Projects / Portfolio ------------------->
 }
