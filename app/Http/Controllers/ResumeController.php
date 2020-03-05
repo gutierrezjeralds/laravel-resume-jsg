@@ -349,7 +349,7 @@ class ResumeController extends Controller
                     ]
                 );
 
-                return response()->json(['success' => $set], 200);
+                return response("success-edit", 200);
 
             } else if ( $method == "delete" ) {
                 // Delete data
