@@ -38,7 +38,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response("succsses", 200);
+        return response()->json(['response' => $set], 200);
     }
     // Splash ------------------->
 
@@ -61,7 +61,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response("succsses", 200);
+        return response()->json(['response' => $set], 200);
     }
     // Home --------------------->
 
@@ -106,7 +106,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response("succsses", 200);
+        return response()->json(['response' => $set], 200);
     }
     // Skills ------------------->
 
@@ -214,7 +214,7 @@ class ResumeController extends Controller
 
         } catch (\Exception $e) {
             // print_r($e);
-            return response("fail", 200);
+            return response()->json(['response' => 'fail'], 200);
         }
     }
 
@@ -349,20 +349,20 @@ class ResumeController extends Controller
                     ]
                 );
 
-                return response("success-edit", 200);
+                return response()->json(['response' => $set], 200);
 
             } else if ( $method == "delete" ) {
                 // Delete data
                 $set = DB::table("projects")->where('id', $key)->delete();
 
-                return response("success-delete", 200);
+                return response()->json(['response' => $set], 200);
 
             } else {
-                return response("fail", 200);
+                return response()->json(['response' => 'fail'], 200);
             }
         } catch (\Exception $e) {
             // print_r($e);
-            return response("fail", 200);
+            return response()->json(['response' => 'fail'], 200);
         }
     }
     // Projects / Portfolio ------------------->
