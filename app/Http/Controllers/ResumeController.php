@@ -317,7 +317,7 @@ class ResumeController extends Controller
                     'skills'        => $skills,
                     'description'   => $description,
                     'image'         => $image,
-                    'website'       => $url,
+                    'website'       => $website,
                     'start_in'      => $start_in
                 ]
             );
@@ -325,7 +325,7 @@ class ResumeController extends Controller
             return response("success-edit", 200);
         } catch (\Exception $e) {
             // print_r($e);
-            return response("fail", 200);
+            return response($e, 200);
         }
     }
     // Projects / Portfolio ------------------->
