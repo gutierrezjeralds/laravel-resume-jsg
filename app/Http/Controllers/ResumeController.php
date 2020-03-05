@@ -343,8 +343,7 @@ class ResumeController extends Controller
                         'category'      => $category,
                         'skills'        => $skills,
                         'description'   => $description,
-                        'image'         => $image,
-                        'website'       => $url
+                        'image'         => $image
                     ]
                 );
 
