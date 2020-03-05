@@ -312,17 +312,19 @@ class ResumeController extends Controller
                 $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
                 if ( empty( $duplicate ) ) {
                     // Continue to add data
-                    $set = DB::table('projects')->insert([
-                        'tag'           => $tag,
-                        'company'       => $company,
-                        'title'         => $title,
-                        'category'      => $category,
-                        'skills'        => $skills,
-                        'description'   => $description,
-                        'image'         => $image,
-                        'website'       => $url,
-                        'start_in'      => $start_in
-                    ]);
+                    $set = DB::table('projects')->insert(
+                        [
+                            'tag'           => $tag,
+                            'company'       => $company,
+                            'title'         => $title,
+                            'category'      => $category,
+                            'skills'        => $skills,
+                            'description'   => $description,
+                            'image'         => $image,
+                            'website'       => $url,
+                            'start_in'      => $start_in
+                        ]
+                    );
 
                     return "success-add";
     
@@ -347,7 +349,7 @@ class ResumeController extends Controller
                     ]
                 );
 
-                return "success-edit";
+                return response()->json(['success' => $set], 200);
 
             } else if ( $method == "delete" ) {
                 // Delete data
