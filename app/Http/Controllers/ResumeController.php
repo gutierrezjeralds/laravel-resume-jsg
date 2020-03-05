@@ -304,7 +304,7 @@ class ResumeController extends Controller
             $description    = $request->input('description');
             $image          = $request->input('image');
             $website        = $request->input('website');
-            $url            = $website !== "" && $website !== undefined ? ( rtrim($website, '/') ) : ("");
+            $url            = !empty( $website ) ? ( rtrim($website, '/') ) : ("");
             $start_in       = $request->input('start_in');
     
             if ( $method == 'add' || $method == 1 ) {
