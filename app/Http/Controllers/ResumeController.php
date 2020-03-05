@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Carbon\Carbon;
 use DB;
 use App\Splash;
 use App\Skill;
@@ -86,13 +87,15 @@ class ResumeController extends Controller
     }
 
     public function setSkills(Request $request){
-        $key = $request->input('key');
-        $title = $request->input('title');
-        $description = $request->input('description');
-        $percent = $request->input('percent');
-        $code = $request->input('code');
-        $start_in = $request->input('start_in');
-        $end_in = $request->input('end_in');
+        $key            = $request->input('key');
+        $title          = $request->input('title');
+        $description    = $request->input('description');
+        $percent        = $request->input('percent');
+        $code           = $request->input('code');
+        $startIn        = $request->input('start_in');
+        $endIn          = $request->input('end_in');
+        $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
+        $end_in         = !empty( $endIn ) ? ( Carbon::parse($endIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
 
         $set = DB::table('skills')->updateOrInsert(
             ['id' => $key],
@@ -303,9 +306,10 @@ class ResumeController extends Controller
             $skills         = $request->input('skills');
             $description    = $request->input('description');
             $image          = $request->input('image');
-            $website        = $request->input('website');
-            $url            = !empty( $website ) ? ( rtrim($website, '/') ) : ("");
-            $start_in       = $request->input('start_in');
+            $websiteUri     = $request->input('website');
+            $startIn        = $request->input('start_in');
+            $website        = !empty( $websiteUri ) ? ( rtrim($websiteUri, '/') ) : ("");
+            $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
     
             if ( $method == "add" ) {
                 // Add data
@@ -318,10 +322,10 @@ class ResumeController extends Controller
                             'company'       => $company,
                             'title'         => $title,
                             'category'      => $category,
-                            'skills'        => json_decode($skills, true),
+                            'skills'        => $skills,
                             'description'   => $description,
                             'image'         => $image,
-                            'website'       => $url,
+                            'website'       => $website,
                             'start_in'      => $start_in
                         ]
                     );
@@ -344,7 +348,8 @@ class ResumeController extends Controller
                         'skills'        => $skills,
                         'description'   => $description,
                         'image'         => $image,
-                        'website'       => $url
+                        'website'       => $website,
+                        'start_in'      => $start_in
                     ]
                 );
 
