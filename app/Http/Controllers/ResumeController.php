@@ -38,7 +38,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response()->json(['success' => $set], 200);
+        return response("succsses", 200);
     }
     // Splash ------------------->
 
@@ -61,7 +61,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response()->json(['success' => $set], 200);
+        return response("succsses", 200);
     }
     // Home --------------------->
 
@@ -106,7 +106,7 @@ class ResumeController extends Controller
             ]
         );
 
-        return response()->json(['success' => $set], 200);
+        return response("succsses", 200);
     }
     // Skills ------------------->
 
@@ -214,7 +214,7 @@ class ResumeController extends Controller
 
         } catch (\Exception $e) {
             // print_r($e);
-            return "fail";
+            return response("fail", 200);
         }
     }
 
@@ -326,11 +326,11 @@ class ResumeController extends Controller
                         ]
                     );
 
-                    return "success-add";
+                    return response("success-add", 200);
     
                 } else {
                     // Has duplicate data
-                    return "duplicate";
+                    return response("duplicate", 200);
                 }
             } else if ( $method == "edit" ) {
                 // Edit data
@@ -355,14 +355,14 @@ class ResumeController extends Controller
                 // Delete data
                 $set = DB::table("projects")->where('id', $key)->delete();
 
-                return "success-delete";
+                return response("success-delete", 200);
 
             } else {
-                return "fail";
+                return response("fail", 200);
             }
         } catch (\Exception $e) {
-            print_r($e);
-            return "fail";
+            // print_r($e);
+            return response("fail", 200);
         }
     }
     // Projects / Portfolio ------------------->
