@@ -307,7 +307,7 @@ class ResumeController extends Controller
             $url            = !empty( $website ) ? ( rtrim($website, '/') ) : ("");
             $start_in       = $request->input('start_in');
     
-            if ( $method == 'add' || $method == 1 ) {
+            if ( $method == "add" ) {
                 // Add data
                 $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
                 if ( empty( $duplicate ) ) {
@@ -330,7 +330,7 @@ class ResumeController extends Controller
                     // Has duplicate data
                     return "duplicate";
                 }
-            } else if ( $method == 'edit' || $method == 0 ) {
+            } else if ( $method == "edit" ) {
                 // Edit data
                 $set = DB::table("projects")->updateOrInsert(
                     ['id' => $key],
@@ -349,8 +349,8 @@ class ResumeController extends Controller
 
                 return "success-edit";
 
-            } else if ( $method == 'delete' || $method == -1 ) {
-                // Edit data
+            } else if ( $method == "delete" ) {
+                // Delete data
                 $set = DB::table("projects")->where('id', $key)->delete();
 
                 return "success-delete";
