@@ -307,59 +307,22 @@ class ResumeController extends Controller
             $url            = !empty( $website ) ? ( rtrim($website, '/') ) : ("");
             $start_in       = $request->input('start_in');
     
-            if ( $method == "add" ) {
-                // Add data
-                $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
-                if ( empty( $duplicate ) ) {
-                    // Continue to add data
-                    $set = DB::table('projects')->insert(
-                        [
-                            'tag'           => $tag,
-                            'company'       => $company,
-                            'title'         => $title,
-                            'category'      => $category,
-                            'skills'        => $skills,
-                            'description'   => $description,
-                            'image'         => $image,
-                            'website'       => $url,
-                            'start_in'      => $start_in
-                        ]
-                    );
+            $set = DB::table("projects")->updateOrInsert(
+                ['id' => $key],
+                [
+                    'tag'           => $tag,
+                    'company'       => $company,
+                    'title'         => $title,
+                    'category'      => $category,
+                    'skills'        => $skills,
+                    'description'   => $description,
+                    'image'         => $image,
+                    'website'       => $url,
+                    'start_in'      => $start_in
+                ]
+            );
 
-                    return response("success-add", 200);
-    
-                } else {
-                    // Has duplicate data
-                    return response("duplicate", 200);
-                }
-            } else if ( $method == "edit" ) {
-                // Edit data
-                $set = DB::table("projects")->updateOrInsert(
-                    ['id' => $key],
-                    [
-                        'tag'           => $tag,
-                        'company'       => $company,
-                        'title'         => $title,
-                        'category'      => $category,
-                        'skills'        => $skills,
-                        'description'   => $description,
-                        'image'         => $image,
-                        'website'       => $url,
-                        'start_in'      => $start_in
-                    ]
-                );
-
-                return response("success-edit", 200);
-
-            } else if ( $method == "delete" ) {
-                // Delete data
-                $set = DB::table("projects")->where('id', $key)->delete();
-
-                return response("success-delete", 200);
-
-            } else {
-                return response("fail", 200);
-            }
+            return response("success-edit", 200);
         } catch (\Exception $e) {
             // print_r($e);
             return response("fail", 200);
