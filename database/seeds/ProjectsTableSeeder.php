@@ -24,7 +24,7 @@ class ProjectsTableSeeder extends Seeder
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ASA","title":"SASS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AAN","title":"Angular"},{"code":"1ABO","title":"Bootstrap"},{"code":"1ATH","title":"Three.JS"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/kpph-3dscan.png",
-                "website"               =>  "http://www.xyz3dscan.com/",
+                "website"               =>  "http://www.xyz3dscan.com",
                 "start_in"              =>  Carbon::now()->format('2015-08-20 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -45,12 +45,12 @@ class ProjectsTableSeeder extends Seeder
             [
                 "tag"                   =>  "",
                 "company"               =>  "",
-                "title"                 =>  "Portfolio",
+                "title"                 =>  "Portfolio - Bootstrap",
                 "category"              =>  "development",
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ASA","title":"SASS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AAN","title":"Angular"},{"code":"1ABO","title":"Bootstrap"},{"code":"1ATH","title":"Three.JS"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/portfolio-1.png",
-                "website"               =>  "http://gutierrez.herokuapp.com/",
+                "website"               =>  "http://gutierrez.herokuapp.com",
                 "start_in"              =>  Carbon::now()->format('2016-04-01 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -71,12 +71,12 @@ class ProjectsTableSeeder extends Seeder
             [
                 "tag"                   =>  "",
                 "company"               =>  "",
-                "title"                 =>  "Portfolio",
+                "title"                 =>  "Portfolio - MDBootstrap",
                 "category"              =>  "development",
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ASA","title":"SASS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AAJ","title":"AJAX"},{"code":"1BJS","title":"JSON"},{"code":"1AMD","title":"MDBootstrap"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/portfolio-2.png",
-                "website"               =>  "http://gutierrez-jerald.herokuapp.com/",
+                "website"               =>  "http://gutierrez-jerald.herokuapp.com",
                 "start_in"              =>  Carbon::now()->format('2017-01-01 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -115,7 +115,7 @@ class ProjectsTableSeeder extends Seeder
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ASA","title":"SASS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AAJ","title":"AJAX"},{"code":"1AWO","title":"Wordpress"},{"code":"1ABO","title":"Bootstrap"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/tssi-intranet.png",
-                "website"               =>  "https://intranet.deepbluecompany.com.au/",
+                "website"               =>  "https://intranet.deepbluecompany.com.au",
                 "start_in"              =>  Carbon::now()->format('2019-06-10 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -141,7 +141,7 @@ class ProjectsTableSeeder extends Seeder
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ASA","title":"SASS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1ABO","title":"Bootstrap"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/kpph-xyzauth.png",
-                "website"               =>  "https://auth.xyzfamily.com/",
+                "website"               =>  "https://auth.xyzfamily.com",
                 "start_in"              =>  Carbon::now()->format('2017-01-01 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -149,7 +149,7 @@ class ProjectsTableSeeder extends Seeder
             [
                 "tag"                   =>  "kpph",
                 "company"               =>  "Kinpo Electronics Philippines Inc.",
-                "title"                 =>  "eDM",
+                "title"                 =>  "eDM - KPHH",
                 "category"              =>  "maintenance",
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1BJA","title":"JAVA"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
@@ -167,7 +167,7 @@ class ProjectsTableSeeder extends Seeder
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ACS","title":"CSS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AWO","title":"Wordpress"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/tssi-main.png",
-                "website"               =>  "https://www.thinkconveyancing.com.au/",
+                "website"               =>  "https://www.thinkconveyancing.com.au",
                 "start_in"              =>  Carbon::now()->format('2019-06-10 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -180,7 +180,7 @@ class ProjectsTableSeeder extends Seeder
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"},{"code":"1ACS","title":"CSS"},{"code":"1AJA","title":"JavaScript"},{"code":"1AJQ","title":"JQuery"},{"code":"1AWO","title":"Wordpress"},{"code":"1AGI","title":"GIT"}]',
                 "description"           =>  "",
                 "image"                 =>  "http://gutierrez-jerald-cv-be.herokuapp.com/img/project/tssi-rbi.png",
-                "website"               =>  "https://www.rapidbuildinginspections.com.au/",
+                "website"               =>  "https://www.rapidbuildinginspections.com.au",
                 "start_in"              =>  Carbon::now()->format('2019-06-10 00:00:00'),
                 "created_at"            =>  Carbon::now()->format('Y-m-d H:i:s'),
                 "updated_at"            =>  Carbon::now()->format('Y-m-d H:i:s')
@@ -188,7 +188,7 @@ class ProjectsTableSeeder extends Seeder
             [
                 "tag"                   =>  "tssi",
                 "company"               =>  "Think Support Services Inc.",
-                "title"                 =>  "eDM",
+                "title"                 =>  "eDM - TSSI",
                 "category"              =>  "maintenance",
                 "skills"                =>  '[{"code":"1AHT","title":"HTML"}]',
                 "description"           =>  "",
