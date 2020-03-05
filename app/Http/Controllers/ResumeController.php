@@ -341,11 +341,10 @@ class ResumeController extends Controller
                         'company'       => $company,
                         'title'         => $title,
                         'category'      => $category,
-                        'skills'        => json_decode($skills, true),
+                        'skills'        => $skills,
                         'description'   => $description,
                         'image'         => $image,
-                        'website'       => $url,
-                        'start_in'      => $start_in
+                        'website'       => $url
                     ]
                 );
 
