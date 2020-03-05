@@ -309,7 +309,7 @@ class ResumeController extends Controller
     
             if ( $method == "add" ) {
                 // Add data
-                $duplicate = DB::table('projects')->where('title', $title)->where('website', $website)->get();
+                $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
                 if ( empty( $duplicate ) ) {
                     // Continue to add data
                     $set = DB::table('projects')->insert(
@@ -318,7 +318,7 @@ class ResumeController extends Controller
                             'company'       => $company,
                             'title'         => $title,
                             'category'      => $category,
-                            'skills'        => $skills,
+                            'skills'        => json_decode($skills, true),
                             'description'   => $description,
                             'image'         => $image,
                             'website'       => $url,
@@ -341,10 +341,10 @@ class ResumeController extends Controller
                         'company'       => $company,
                         'title'         => $title,
                         'category'      => $category,
-                        'skills'        => $skills,
+                        'skills'        => json_decode($skills, true),
                         'description'   => $description,
                         'image'         => $image,
-                        'website'       => $website,
+                        'website'       => $url,
                         'start_in'      => $start_in
                     ]
                 );
