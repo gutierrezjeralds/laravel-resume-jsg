@@ -387,7 +387,7 @@ class ResumeController extends Controller
     // File upload / HTML5 ------------------->
     public function setFileUploads(Request $request, $page) {
         $file = $request->file('image');
-        return $this->fileUploadViaHtml5($file, "/uploads\/" . $page ."/");
+        return $this->fileUploadViaHtml5($file, "/uploads" . "/" . $page ."/");
     }
 
     public function fileUploadViaHtml5($files, $dir) {
@@ -400,14 +400,14 @@ class ResumeController extends Controller
                     return Response()->json(["response" => $path], 200);
 
                 } else {
-                    return response()->json(['response' => 'fail1'], 200);
+                    return response()->json(['response' => 'fail'], 200);
                 }
             } else {
-                return response()->json(['response' => $files], 200);
+                return response()->json(['response' => 'fail'], 200);
             }
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => 'fail3'], 200);
+            return response()->json(['response' => 'fail'], 200);
         }
     }
     // File upload / HTML5 ------------------->
