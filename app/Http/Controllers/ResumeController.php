@@ -318,7 +318,7 @@ class ResumeController extends Controller
             $category       = $request->input('category');
             $skills         = $request->input('skills');
             $description    = $request->input('description');
-            $image          = $request->file('image');
+            $image          = $request->input('image');
             $websiteUri     = $request->input('website');
             $startIn        = $request->input('start_in');
             $website        = !empty( $websiteUri ) ? ( rtrim($websiteUri, '/') ) : ("");
@@ -394,9 +394,9 @@ class ResumeController extends Controller
         try {
             if ( $files ) {
                 $filename = time() . '.' . $files->getClientOriginalExtension();
+                $path = "https://gutierrez-jerald-cv-be.herokuapp.com/storage" . $dir . $filename;
                 if ( Storage::disk('public')->put($dir . $filename, File::get($files)) ) {
                     // Success
-                    $path = "https://gutierrez-jerald-cv-be.herokuapp.com/storage" . $dir . $filename;
                     return Response()->json(["response" => $path], 200);
 
                 } else {
