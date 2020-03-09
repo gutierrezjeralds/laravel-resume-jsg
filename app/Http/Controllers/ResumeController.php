@@ -403,7 +403,7 @@ class ResumeController extends Controller
                     return response()->json(['response' => 'fail1'], 200);
                 }
             } else {
-                return response()->json(['response' => 'fail2'], 200);
+                return response()->json(['response' => $files], 200);
             }
         } catch (\Exception $e) {
             // print_r($e);
