@@ -324,11 +324,6 @@ class ResumeController extends Controller
             $website        = !empty( $websiteUri ) ? ( rtrim($websiteUri, '/') ) : ("");
             $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
 
-            // Check if image is url or bytes
-            if ( filter_var($image, FILTER_VALIDATE_URL) === FALSE ) {
-                $image = fileUploadBytes($image);
-            }
-    
             if ( $method == "add" ) {
                 // Add data
                 $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();

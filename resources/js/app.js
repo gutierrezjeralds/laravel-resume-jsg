@@ -50,11 +50,12 @@ $('.file-upload-input').on('change', function(){
 $('#fileUploadForm').submit(function(e) {
     e.preventDefault();
 
-    var formData = new FormData(this);
+    var formData = new FormData($("#fileUploadForm")[0]);
+    console.log(formData)
  
     $.ajax({
         type:'POST',
-        url: "http://localhost:8000/set-local-file-upload",
+        url: "http://localhost:8000/api/set-file-upload/project",
         data: formData,
         cache:false,
         contentType: false,
