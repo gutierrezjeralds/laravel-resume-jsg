@@ -30,3 +30,41 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('.file-upload-input').on('change', function(){
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.file-upload-preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    }
+})
+
+$('#fileUploadForm').submit(function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+ 
+    $.ajax({
+        type:'POST',
+        url: "http://localhost:8000/set-local-file-upload",
+        data: formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: (data) => {
+            this.reset();
+            console.log(data)
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+});

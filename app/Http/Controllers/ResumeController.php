@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
 use App\Splash;
@@ -11,6 +13,17 @@ use App\Skill;
 
 class ResumeController extends Controller
 {
+    // Local ------------------->
+    public function localFileUpload(Request $request) {
+        return view('layouts.file-upload');
+    }
+
+    public function setLocalFileUpload(Request $request) {
+        $file = $request->file('image');
+        return $this->fileUploadViaHtml5($file, "/uploads/local/");
+    }
+    // Local ------------------->
+
     // Splash ------------------->
     public function getSplash(Request $request, $page){
         return Splash::where('page', $page) -> get();
@@ -305,11 +318,16 @@ class ResumeController extends Controller
             $category       = $request->input('category');
             $skills         = $request->input('skills');
             $description    = $request->input('description');
-            $image          = $request->input('image');
+            $image          = $request->file('image');
             $websiteUri     = $request->input('website');
             $startIn        = $request->input('start_in');
             $website        = !empty( $websiteUri ) ? ( rtrim($websiteUri, '/') ) : ("");
             $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
+
+            // Check if image is url or bytes
+            if ( filter_var($image, FILTER_VALIDATE_URL) === FALSE ) {
+                $image = fileUploadBytes($image);
+            }
     
             if ( $method == "add" ) {
                 // Add data
@@ -370,4 +388,27 @@ class ResumeController extends Controller
         }
     }
     // Projects / Portfolio ------------------->
+
+    // File upload / HTML5 ------------------->
+    public function fileUploadViaHtml5($files, $dir) {
+        try {
+            if ( $files ) {
+                $filename = time() . '.' . $files->getClientOriginalExtension();
+                if ( Storage::disk('public')->put($dir . $filename, File::get($files)) ) {
+                    // Success
+                    $path = "https://gutierrez-jerald-cv-be.herokuapp.com/storage" . $dir . $filename;
+                    return Response()->json(["response" => $path], 200);
+
+                } else {
+                    return response()->json(['response' => 'fail'], 200);
+                }
+            } else {
+                return response()->json(['response' => 'fail'], 200);
+            }
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail2'], 200);
+        }
+    }
+    // File upload / HTML5 ------------------->
 }

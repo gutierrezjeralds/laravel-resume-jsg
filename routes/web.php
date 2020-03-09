@@ -11,6 +11,18 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/file-upload',[
+    'uses' => 'ResumeController@localFileUpload',
+    'as' => 'localFileUpload'
+]);
+
+Route::post('/set-local-file-upload',[
+    'uses' => 'ResumeController@setLocalFileUpload',
+    'as' => 'setLocalFileUpload'
+]);
