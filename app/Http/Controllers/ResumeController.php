@@ -400,14 +400,14 @@ class ResumeController extends Controller
                     return Response()->json(["response" => $path], 200);
 
                 } else {
-                    return response()->json(['response' => 'fail'], 200);
+                    return response()->json(['response' => 'fail1'], 200);
                 }
             } else {
-                return response()->json(['response' => 'fail'], 200);
+                return response()->json(['response' => 'fail2'], 200);
             }
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => 'fail2'], 200);
+            return response()->json(['response' => 'fail3'], 200);
         }
     }
     // File upload / HTML5 ------------------->
