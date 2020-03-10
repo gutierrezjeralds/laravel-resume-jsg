@@ -385,9 +385,9 @@ class ResumeController extends Controller
     // Projects / Portfolio ------------------->
 
     // File upload / HTML5 ------------------->
-    public function setFileUploads(Request $request, $page) {
+    public function setFileUploads(Request $request, $folder) {
         $file = $request->file('image');
-        return $this->fileUploadViaHtml5($file, "/" . $page ."/");
+        return $this->fileUploadViaHtml5($file, "/" . $folder ."/");
     }
 
     public function fileUploadViaHtml5($files, $dir) {

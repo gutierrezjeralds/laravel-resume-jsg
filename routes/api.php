@@ -35,5 +35,5 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/getProjectById', 'ResumeController@getProjectById')->name('getProjectById.api');
     Route::get('/getExperienceTag', 'ResumeController@getExperienceTag')->name('getExperienceTag.api');
     Route::get('/multi-select-skills', 'ResumeController@getSkills4MultiSelect')->name('getSkills4MultiSelect.api');
-    Route::post('/set-file-upload/{page}', 'ResumeController@setFileUploads')->name('setFileUploads.api');
+    Route::post('/set-file-upload/{folder}', 'ResumeController@setFileUploads')->name('setFileUploads.api');
 });
