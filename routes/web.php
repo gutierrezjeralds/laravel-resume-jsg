@@ -26,3 +26,8 @@ Route::post('/set-local-file-upload',[
     'uses' => 'ResumeController@setLocalFileUpload',
     'as' => 'setLocalFileUpload'
 ]);
+
+Route::get('/set-local-update-project-skills',[
+    'uses' => 'ResumeController@setLocalUpdateProjectSkills',
+    'as' => 'setLocalUpdateProjectSkills'
+]);

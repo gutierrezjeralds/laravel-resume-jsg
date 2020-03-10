@@ -22,6 +22,24 @@ class ResumeController extends Controller
         $file = $request->file('image');
         return $this->fileUploadViaHtml5($file, "/uploads/local/");
     }
+
+    public function setLocalUpdateProjectSkills(Request $request) {
+        $prev_title = "HTML";
+        $title = "Jerald";
+        $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
+        $projectsStr = str_replace( $prev_title, $title, json_encode( $projects, true ) );
+        foreach ( json_decode( $projectsStr, true ) as $project ) {
+            $key = $project['id'];
+            $skills = $project['skills'];
+            $set = DB::table('projects')->updateOrInsert(
+                ['id' => $key],
+                [
+                    'skills'    => $skills
+                ]
+            );
+        }
+        return $projectsStr;
+    }
     // Local ------------------->
 
     // Splash ------------------->
