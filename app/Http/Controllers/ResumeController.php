@@ -118,29 +118,93 @@ class ResumeController extends Controller
     }
 
     public function setSkills(Request $request){
-        $key            = $request->input('key');
-        $title          = $request->input('title');
-        $description    = $request->input('description');
-        $percent        = $request->input('percent');
-        $code           = $request->input('code');
-        $startIn        = $request->input('start_in');
-        $endIn          = $request->input('end_in');
-        $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
-        $end_in         = !empty( $endIn ) ? ( Carbon::parse($endIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
+        try {
+            $method         = $request->input('method');
+            $key            = $request->input('key');
+            $prev_title     = $request->input('prev_title');
+            $title          = $request->input('title');
+            $description    = $request->input('description');
+            $percent        = $request->input('percent');
+            $code           = $request->input('code');
+            $startIn        = $request->input('start_in');
+            $endIn          = $request->input('end_in');
+            $start_in       = !empty( $startIn ) ? ( Carbon::parse($startIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
+            $end_in         = !empty( $endIn ) ? ( Carbon::parse($endIn)->format('Y-m-d H:i:s') ) : ( Carbon::now()->format('Y-m-d H:i:s') );
+    
+            if ( $method == "add" ) {
+                // Add data
+                $duplicate = DB::table('skills')->where('code', $title)->get();
+                if ( empty( $duplicate ) ) {
+                    // Continue to add data
+                    $set = DB::table('skills')->insert(
+                        [
+                            'title'         => $title,
+                            'description'   => $description,
+                            'percent'       => $percent,
+                            'code'          => $code,
+                            'start_in'      => $start_in,
+                            'end_in'        => $end_in
+                        ]
+                    );
+    
+                    return response("success-add", 200);
+    
+                } else {
+                    // Has duplicate data
+                    return response("duplicate", 200);
+                }
+            } else if ( $method == "edit" ) {
+                // Edit data
+                $set = DB::table('skills')->updateOrInsert(
+                    ['id' => $key],
+                    [
+                        'title'         => $title,
+                        'description'   => $description,
+                        'percent'       => $percent,
+                        'code'          => $code,
+                        'start_in'      => $start_in,
+                        'end_in'        => $end_in
+                    ]
+                );
 
-        $set = DB::table('skills')->updateOrInsert(
-            ['id' => $key],
-            [
-                'title'         => $title,
-                'description'   => $description,
-                'percent'       => $percent,
-                'code'          => $code,
-                'start_in'      => $start_in,
-                'end_in'        => $end_in
-            ]
-        );
-
-        return response()->json(['response' => $set], 200);
+                if ( $prev_title.toLowerCase() != $title.toLowerCase() ) {
+                    /* 
+                        Update skills in projects database
+                        This function is run because of the skills structure in project database
+                        Find in project database where has the same in prev_title (use sql like)
+                        Update value of skills - this value is formatted as json
+                    */
+                    $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
+                    if ( !empty( $projects ) ) {
+                        $projectsStr = str_replace( $prev_title, $title, json_encode( $projects, true ) );
+                        foreach ( json_decode( $projectsStr, true ) as $project ) {
+                            $key = $project['id'];
+                            $skills = $project['skills'];
+                            $setProj = DB::table('projects')->updateOrInsert(
+                                ['id' => $key],
+                                [
+                                    'skills'    => $skills
+                                ]
+                            );
+                        }
+                    }
+                }
+    
+                return response()->json(['response' => $set], 200);
+    
+            } else if ( $method == "delete" ) {
+                // Delete data
+                $set = DB::table("skills")->where('id', $key)->delete();
+    
+                return response()->json(['response' => $set], 200);
+    
+            } else {
+                return response()->json(['response' => 'fail'], 200);
+            }
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail'], 200);
+        }
     }
     // Skills ------------------->
 
