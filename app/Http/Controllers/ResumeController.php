@@ -387,16 +387,16 @@ class ResumeController extends Controller
     // File upload / HTML5 ------------------->
     public function setFileUploads(Request $request, $page) {
         $file = $request->file('image');
-        return $this->fileUploadViaHtml5($file, "/uploads" . "/" . $page ."/");
+        return $this->fileUploadViaHtml5($file, "/" . $page ."/");
     }
 
     public function fileUploadViaHtml5($files, $dir) {
         try {
             if ( $files ) {
                 $filename = time() . '.' . $files->getClientOriginalExtension();
-                $path = "https://gutierrez-jerald-cv-be.herokuapp.com/storage" . $dir . $filename;
-                if ( Storage::disk('public')->put($dir . $filename, File::get($files)) ) {
+                if ( Storage::disk('public_uploads')->put($dir . $filename, File::get($files)) ) {
                     // Success
+                    $path = "https://gutierrez-jerald-cv-be.herokuapp.com/uploads" . $dir . $filename;
                     return Response()->json(["response" => $path], 200);
 
                 } else {
