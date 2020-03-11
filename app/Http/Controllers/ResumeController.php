@@ -156,11 +156,11 @@ class ResumeController extends Controller
                         ]
                     );
     
-                    return response("success-add", 200);
+                    return response()->json(['response' => "success-add"], 200);
     
                 } else {
                     // Has duplicate data
-                    return response("duplicate", 200);
+                    return response()->json(['response' => "duplicate"], 200);
                 }
             } else if ( $method == "edit" ) {
                 // Edit data
@@ -463,11 +463,11 @@ class ResumeController extends Controller
                         ]
                     );
 
-                    return response("success-add", 200);
+                    return response()->json(['response' => "success-add"], 200);
     
                 } else {
                     // Has duplicate data
-                    return response("duplicate", 200);
+                    return response()->json(['response' => "duplicate"], 200);
                 }
             } else if ( $method == "edit" ) {
                 // Edit data
