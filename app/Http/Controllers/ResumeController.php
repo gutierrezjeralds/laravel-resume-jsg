@@ -212,7 +212,7 @@ class ResumeController extends Controller
                     Delete value of skills - this value is formatted as json
                 */
                 $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
-                if ( $projects->isEmpty() ) {
+                if ( !$projects->isEmpty() ) {
                     $projectsStr = str_replace( $prev_title, 'deleted', json_encode( $projects, true ) );
                     foreach ( json_decode( $projectsStr, true ) as $project ) {
                         $key = $project['id'];
