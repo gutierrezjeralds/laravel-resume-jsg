@@ -176,7 +176,7 @@ class ResumeController extends Controller
                     ]
                 );
 
-                if ( $prev_title.toLowerCase() != $title.toLowerCase() ) {
+                if ( strtolower($prev_title) != strtolower($title) ) {
                     /* 
                         Update skills in projects database
                         This function is run because of the skills structure in project database
@@ -232,7 +232,6 @@ class ResumeController extends Controller
                 return response()->json(['response' => 'fail'], 200);
             }
         } catch (\Exception $e) {
-            error_log($e);
             // print_r($e);
             return response()->json(['response' => 'fail'], 200);
         }
