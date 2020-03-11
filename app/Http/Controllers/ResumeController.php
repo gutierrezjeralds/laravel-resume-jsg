@@ -232,6 +232,7 @@ class ResumeController extends Controller
                 return response()->json(['response' => 'fail'], 200);
             }
         } catch (\Exception $e) {
+            error_log($e);
             // print_r($e);
             return response()->json(['response' => 'fail'], 200);
         }
