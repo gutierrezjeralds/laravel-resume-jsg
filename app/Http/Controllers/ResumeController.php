@@ -143,7 +143,7 @@ class ResumeController extends Controller
             if ( $method == "add" ) {
                 // Add data
                 $duplicate = DB::table('skills')->where('code', $code)->orWhere('title', $title)->get();
-                if ( empty( $duplicate ) ) {
+                if ( $duplicate->isEmpty() ) {
                     // Continue to add data
                     $set = DB::table('skills')->insert(
                         [
@@ -184,7 +184,7 @@ class ResumeController extends Controller
                         Update value of skills - this value is formatted as json
                     */
                     $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
-                    if ( !empty( $projects ) ) {
+                    if ( !$projects->isEmpty() ) {
                         $projectsStr = str_replace( $prev_title, $title, json_encode( $projects, true ) );
                         foreach ( json_decode( $projectsStr, true ) as $project ) {
                             $key = $project['id'];
@@ -212,7 +212,7 @@ class ResumeController extends Controller
                     Delete value of skills - this value is formatted as json
                 */
                 $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
-                if ( !empty( $projects ) ) {
+                if ( $projects->isEmpty() ) {
                     $projectsStr = str_replace( $prev_title, 'deleted', json_encode( $projects, true ) );
                     foreach ( json_decode( $projectsStr, true ) as $project ) {
                         $key = $project['id'];
@@ -373,7 +373,7 @@ class ResumeController extends Controller
         }
 
         // Data concat
-        if ( !empty( $getProjects ) ) {
+        if ( !$getProjects->isEmpty() ) {
             $arr = [];
 
             // Array for skills
@@ -447,7 +447,7 @@ class ResumeController extends Controller
             if ( $method == "add" ) {
                 // Add data
                 $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
-                if ( empty( $duplicate ) ) {
+                if ( $duplicate->isEmpty() ) {
                     // Continue to add data
                     $set = DB::table('projects')->insert(
                         [
