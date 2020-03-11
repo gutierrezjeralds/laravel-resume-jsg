@@ -120,6 +120,11 @@ class ResumeController extends Controller
     public function getSkillsTitle(Request $request) {
         return DB::table('skills')->select('id', 'title', 'code')->get();
     }
+    
+    public function getSkillById(Request $request) {
+        $id = $request->input('id');
+        return DB::table('skills')->where('id', $id)->get();
+    }
 
     public function setSkills(Request $request){
         try {

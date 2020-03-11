@@ -28,6 +28,7 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/getSkills', 'ResumeController@getSkills')->name('getSkills.api');
     Route::post('/setSkills', 'ResumeController@setSkills')->name('setSkills.api');
     Route::get('/getSkillsTitle', 'ResumeController@getSkillsTitle')->name('getSkillsTitle.api');
+    Route::get('/getSkillById', 'ResumeController@getSkillById')->name('getSkillById.api');
     Route::get('/get-all-experience', 'ResumeController@getAllExperience')->name('getAllExperience.api');
     Route::get('/getEducational', 'ResumeController@getEducational')->name('getEducational.api');
     Route::get('/getProjects', 'ResumeController@getProjects')->name('getProjects.api');
