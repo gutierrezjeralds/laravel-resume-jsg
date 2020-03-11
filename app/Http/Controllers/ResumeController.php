@@ -116,6 +116,10 @@ class ResumeController extends Controller
 
         return response()->json($arr, 200);
     }
+    
+    public function getSkillsTitle(Request $request) {
+        return DB::table('skills')->select('id', 'title', 'code')->get();
+    }
 
     public function setSkills(Request $request){
         try {
@@ -133,7 +137,7 @@ class ResumeController extends Controller
     
             if ( $method == "add" ) {
                 // Add data
-                $duplicate = DB::table('skills')->where('code', $title)->get();
+                $duplicate = DB::table('skills')->where('code', $code)->orWhere('title', $title)->get();
                 if ( empty( $duplicate ) ) {
                     // Continue to add data
                     $set = DB::table('skills')->insert(
@@ -195,6 +199,27 @@ class ResumeController extends Controller
             } else if ( $method == "delete" ) {
                 // Delete data
                 $set = DB::table("skills")->where('id', $key)->delete();
+
+                /* 
+                    Delete skills in projects database
+                    This function is run because of the skills structure in project database
+                    Find in project database where has the same in prev_title (use sql like)
+                    Delete value of skills - this value is formatted as json
+                */
+                $projects = DB::table("projects")->select('id', 'skills')->where('skills', 'like', '%"' . $prev_title . '"%')->orWhere('skills', 'like', "%'" . $prev_title . "'%")->get();
+                if ( !empty( $projects ) ) {
+                    $projectsStr = str_replace( $prev_title, 'deleted', json_encode( $projects, true ) );
+                    foreach ( json_decode( $projectsStr, true ) as $project ) {
+                        $key = $project['id'];
+                        $skills = $project['skills'];
+                        $setProj = DB::table('projects')->updateOrInsert(
+                            ['id' => $key],
+                            [
+                                'skills'    => $skills
+                            ]
+                        );
+                    }
+                }
     
                 return response()->json(['response' => $set], 200);
     
@@ -246,9 +271,13 @@ class ResumeController extends Controller
                                             foreach ( json_decode($skills, true) as $skill ) {
                                                 $count+= 1;
                                                 if ( $count >= count(json_decode($skills, true)) ) {
-                                                    $skillArr .= $skill['title'];
+                                                    if ( $skill['title'] != "deleted" ) {
+                                                        $skillArr .= $skill['title'];
+                                                    }
                                                 } else {
-                                                    $skillArr .= $skill['title'] . ', ';
+                                                    if ( $skill['title'] != "deleted" ) {
+                                                        $skillArr .= $skill['title'] . ', ';
+                                                    }
                                                 }
                                             }
 
@@ -351,9 +380,13 @@ class ResumeController extends Controller
                     foreach ( json_decode($skills, true) as $skill ) {
                         $count+= 1;
                         if ( $count >= count(json_decode($skills, true)) ) {
-                            $skillArr .= $skill['title'];
+                            if ( $skill['title'] != "deleted" ) {
+                                $skillArr .= $skill['title'];
+                            }
                         } else {
-                            $skillArr .= $skill['title'] . ', ';
+                            if ( $skill['title'] != "deleted" ) {
+                                $skillArr .= $skill['title'] . ', ';
+                            }
                         }
                     }
     
