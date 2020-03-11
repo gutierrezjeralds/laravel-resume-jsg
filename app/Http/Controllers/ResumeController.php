@@ -156,7 +156,7 @@ class ResumeController extends Controller
                         ]
                     );
     
-                    return response()->json(['response' => "success-add"], 200);
+                    return response()->json(['response' => $set], 200);
     
                 } else {
                     // Has duplicate data
@@ -463,7 +463,7 @@ class ResumeController extends Controller
                         ]
                     );
 
-                    return response()->json(['response' => "success-add"], 200);
+                    return response()->json(['response' => $set], 200);
     
                 } else {
                     // Has duplicate data
