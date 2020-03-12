@@ -499,7 +499,7 @@ class ResumeController extends Controller
             }
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => 'fail'], 200);
+            return response()->json(['response' => $e], 200);
         }
     }
     // Projects / Portfolio ------------------->
