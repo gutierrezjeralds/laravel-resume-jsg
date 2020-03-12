@@ -446,7 +446,7 @@ class ResumeController extends Controller
 
             if ( $method == "add" ) {
                 // Add data
-                $duplicate = DB::table('projects')->where('title', $title)->where('website', $url)->get();
+                $duplicate = DB::table('projects')->where('title', $title)->where('website', $website)->get();
                 if ( $duplicate->isEmpty() ) {
                     // Continue to add data
                     $set = DB::table('projects')->insert(
@@ -498,7 +498,7 @@ class ResumeController extends Controller
                 return response()->json(['response' => 'fail'], 200);
             }
         } catch (\Exception $e) {
-            print_r($e);
+            // print_r($e);
             return response()->json(['response' => 'fail'], 200);
         }
     }
