@@ -14,11 +14,11 @@ class ExamController extends Controller
         $pass = $request->input('pass');
 
         $users = DB::table('users')->where('email', $email)->get();
-        $str = "No data";
+        $str = "no-data";
         if ( !$users->isEmpty() ) {
             foreach ( $users as $user ) {
                 if ( $user->password != $pass ) {
-                    $str = "incorrrect";
+                    $str = "incorrect";
                 } else {
                     $str = "success";
                 }
