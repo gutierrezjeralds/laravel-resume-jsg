@@ -29,10 +29,12 @@ class ExamController extends Controller
                                 'user_id'       => $user->id,
                                 'address'       => $address,
                                 'latitude'      => $latitude,
-                                'longitude'     => $longitude
+                                'longitude'     => $longitude,
+                                'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                                'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
                             ]
                         );
-                        
+
                         $str = "success";
                     }
                 }
