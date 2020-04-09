@@ -47,4 +47,15 @@ class ExamController extends Controller
             return response()->json(['response' => 'fail'], 200);
         }
     }
+
+    public function getUsers(Request $request) {
+        $users = DB::table('users')->get();
+        return response()->json($users, 200);
+    }
+
+    public function getLoginLocById(Request $request) {
+        $userId = $request->input('id');
+        $location = DB::table('login_location')->where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        return response()->json($location, 200);
+    }
 }
