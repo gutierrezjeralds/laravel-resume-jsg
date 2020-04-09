@@ -11,8 +11,8 @@ class ExamController extends Controller
 {
     public function isLogin(Request $request) {
         try {
-            $email = "admin@admin.com";
-            $pass = "admin";
+            $email = $request->input('email');
+            $pass = $request->input('pass');
             $address = $request->input('address');
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
