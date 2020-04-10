@@ -69,7 +69,7 @@ class ExamController extends Controller
             // Minimize the response return if possible
     
             if ( $method == "add" ) {
-                $set = DB::table('skills')->insert(
+                $set = DB::table('users')->insert(
                     [
                         'name'          => $name,
                         'email'         => $email,
