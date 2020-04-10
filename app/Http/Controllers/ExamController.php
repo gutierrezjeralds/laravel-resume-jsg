@@ -58,13 +58,18 @@ class ExamController extends Controller
         return response()->json($users, 200);
     }
 
+    public function getUserById(Request $request) {
+        $key = $request->input('key');
+        $user = DB::table('users')->where('id', $key)->get();
+        return response()->json($user, 200);
+    }
+
     public function commandUsers(Request $request){
         try {
             $method = $request->input('method');
             $key = $request->input('key');
             $name = $request->input('name');
             $email = $request->input('email');
-            $role = $request->input('role');
 
             // Minimize the response return if possible
     
@@ -73,7 +78,7 @@ class ExamController extends Controller
                     [
                         'name'          => $name,
                         'email'         => $email,
-                        'role'          => $role,
+                        'role'          => "Subscriber",
                         'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
                         'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
                     ]
@@ -86,8 +91,6 @@ class ExamController extends Controller
                     ['id' => $key],
                     [
                         'name'          => $name,
-                        'email'         => $email,
-                        'role'          => $role,
                         'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
                     ]
                 );
