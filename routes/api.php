@@ -42,5 +42,6 @@ Route::group(['middleware' => ['json.response']], function () {
     // Exam Routes
     Route::get('/exam-login', 'ExamController@isLogin')->name('isLogin.api');
     Route::get('/exam-users', 'ExamController@getUsers')->name('getUsers.api');
+    Route::post('/exam-command-users', 'ExamController@commandUsers')->name('commandUsers.api');
     Route::get('/exam-login-loc', 'ExamController@getLoginLocById')->name('getLoginLocById.api');
 });

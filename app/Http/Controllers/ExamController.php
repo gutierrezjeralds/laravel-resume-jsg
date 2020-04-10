@@ -58,6 +58,57 @@ class ExamController extends Controller
         return response()->json($users, 200);
     }
 
+    public function commandUsers(Request $request){
+        try {
+            $method = $request->input('method');
+            $key = $request->input('key');
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $role = $request->input('role');
+
+            // Minimize the response return if possible
+    
+            if ( $method == "add" ) {
+                $set = DB::table('skills')->insert(
+                    [
+                        'name'          => $name,
+                        'email'         => $email,
+                        'role'          => $role,
+                        'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                    ]
+                );
+
+                return response()->json(['response' => $set], 200);
+    
+            } else if ( $method == "edit" ) {
+                $set = DB::table('users')->updateOrInsert(
+                    ['id' => $key],
+                    [
+                        'name'          => $name,
+                        'email'         => $email,
+                        'role'          => $role,
+                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                    ]
+                );
+        
+                return response()->json(['response' => $set], 200);
+
+            } else if ( $method == "delete" ) {
+                $set = DB::table("users")->where('id', $key)->delete();
+
+                return response()->json(['response' => $set], 200);
+
+            } else {
+                return response()->json(['response' => 'fail'], 200);
+            }
+
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail'], 200);
+        }
+    }
+
     public function getLoginLocById(Request $request) {
         $userId = $request->input('id');
         $location = DB::table('login_location')->where('user_id', $userId)->orderBy('created_at', 'desc')->get();

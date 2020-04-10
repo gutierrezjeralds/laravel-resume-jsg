@@ -152,7 +152,9 @@ class ResumeController extends Controller
                             'percent'       => $percent,
                             'code'          => $code,
                             'start_in'      => $start_in,
-                            'end_in'        => $end_in
+                            'end_in'        => $end_in,
+                            'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                            'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
                         ]
                     );
     
