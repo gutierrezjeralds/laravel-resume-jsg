@@ -113,7 +113,7 @@ class ExamController extends Controller
     }
 
     public function getLoginLocById(Request $request) {
-        $userId = $request->input('id');
+        $userId = $request->input('key');
         $location = DB::table('login_location')->where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return response()->json($location, 200);
     }
