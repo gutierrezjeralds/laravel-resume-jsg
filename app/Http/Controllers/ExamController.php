@@ -84,7 +84,7 @@ class ExamController extends Controller
                     ]
                 );
 
-                return response()->json(['response' => $set], 200);
+                return response()->json(['response' => $method], 200);
     
             } else if ( $method == "edit" ) {
                 $set = DB::table('users')->updateOrInsert(
