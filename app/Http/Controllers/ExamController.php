@@ -103,7 +103,7 @@ class ExamController extends Controller
                 return response()->json(['response' => $set], 200);
 
             } else {
-                return response()->json(['response' => 'fail'], 200);
+                return response()->json(['response' => 'fails' . $method], 200);
             }
 
         } catch (\Exception $e) {
