@@ -70,6 +70,7 @@ class ExamController extends Controller
             $key = $request->input('key');
             $name = $request->input('name');
             $email = $request->input('email');
+            $pass = $request->input('pass');
 
             // Minimize the response return if possible
     
@@ -78,6 +79,7 @@ class ExamController extends Controller
                     [
                         'name'          => $name,
                         'email'         => $email,
+                        'password'      => $pass,
                         'role'          => "Subscriber",
                         'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
                         'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
@@ -108,7 +110,7 @@ class ExamController extends Controller
 
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => $e], 200);
+            return response()->json(['response' => 'fail'], 200);
         }
     }
 
