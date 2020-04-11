@@ -84,7 +84,7 @@ class ExamController extends Controller
                     ]
                 );
 
-                return response()->json(['response' => $method], 200);
+                return response()->json(['response' => $set], 200);
     
             } else if ( $method == "edit" ) {
                 $set = DB::table('users')->updateOrInsert(
@@ -103,12 +103,12 @@ class ExamController extends Controller
                 return response()->json(['response' => $set], 200);
 
             } else {
-                return response()->json(['response' => 'fails' . $method], 200);
+                return response()->json(['response' => 'fail'], 200);
             }
 
         } catch (\Exception $e) {
-            // print_r($e);
-            return response()->json(['response' => 'fail'], 200);
+            print_r($e);
+            return response()->json(['response' => $e], 200);
         }
     }
 
