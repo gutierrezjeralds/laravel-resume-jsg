@@ -75,18 +75,25 @@ class ExamController extends Controller
             // Minimize the response return if possible
     
             if ( $method == "add" ) {
-                $set = DB::table('users')->insert(
-                    [
-                        'name'          => $name,
-                        'email'         => $email,
-                        'password'      => $pass,
-                        'role'          => "Subscriber",
-                        'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
-                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
-                    ]
-                );
-
-                return response()->json(['response' => $set], 200);
+                $duplicate = DB::table('users')->where('email', $email)->get();
+                if ( $duplicate->isEmpty() ) {
+                    $set = DB::table('users')->insert(
+                        [
+                            'name'          => $name,
+                            'email'         => $email,
+                            'password'      => $pass,
+                            'role'          => "Subscriber",
+                            'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                            'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                        ]
+                    );
+    
+                    return response()->json(['response' => $set], 200);
+                    
+                } else {
+                    // Has duplicate data
+                    return response()->json(['response' => "duplicate"], 200);
+                }
     
             } else if ( $method == "edit" ) {
                 $set = DB::table('users')->updateOrInsert(
