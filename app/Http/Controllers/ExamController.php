@@ -163,16 +163,23 @@ class ExamController extends Controller
             $userId = $request->input('userId');
             $productId = $request->input('productId');
     
-            $set = DB::table('cart')->insert(
-                [
-                    'user_id'       => $userId,
-                    'product_id'    => $productId,
-                    'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
-                    'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
-                ]
-            );
-    
-            return response()->json(['response' => $set], 200);
+            $duplicate = DB::table('cart')->where('user_id', $userId)->where('product_id', $productId)->get();
+            if ( $duplicate->isEmpty() ) {
+                $set = DB::table('cart')->insert(
+                    [
+                        'user_id'       => $userId,
+                        'product_id'    => $productId,
+                        'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                    ]
+                );
+        
+                return response()->json(['response' => $set], 200);
+
+            } else {
+                // Has duplicate data
+                return response()->json(['response' => "duplicate"], 200);
+            }
 
         } catch (\Exception $e) {
             // print_r($e);
