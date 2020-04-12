@@ -45,4 +45,8 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/exam-user-info', 'ExamController@getUserById')->name('getUserById.api');
     Route::post('/exam-command-users', 'ExamController@commandUsers')->name('commandUsers.api');
     Route::get('/exam-login-loc', 'ExamController@getLoginLocById')->name('getLoginLocById.api');
+    Route::get('/exam-set-product', 'ExamController@setProduct')->name('setProduct.api');
+    Route::get('/exam-get-product', 'ExamController@getProduct')->name('getProduct.api');
+    Route::get('/exam-set-cart', 'ExamController@setCart')->name('setCart.api');
+    Route::get('/exam-get-cart', 'ExamController@getCart')->name('getCart.api');
 });
