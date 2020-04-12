@@ -184,12 +184,12 @@ class ExamController extends Controller
         try {
             $userId = $request->input('userId');
             $carts = DB::table('cart')->where('user_id', $userId)->get();
-            if ( !$cart->isEmpty() ) {
+            if ( !$carts->isEmpty() ) {
                 $arr = [];
                 // Array for carts
                 foreach ( $carts as $cart ) {
                     $productId = $cart->product_id;
-                    $products = DB::table('products')->where('product_id', $productId)->get();
+                    $products = DB::table('products')->where('id', $productId)->get();
                     if ( !$products->isEmpty() ) {
                         foreach ( $products as $product ) {
                             $arr[] = [
