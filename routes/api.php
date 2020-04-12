@@ -49,4 +49,5 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/exam-get-product', 'ExamController@getProduct')->name('getProduct.api');
     Route::post('/exam-set-cart', 'ExamController@setCart')->name('setCart.api');
     Route::get('/exam-get-cart', 'ExamController@getCart')->name('getCart.api');
+    Route::get('/exam-get-cart-count', 'ExamController@getCartCount')->name('getCartCount.api');
 });

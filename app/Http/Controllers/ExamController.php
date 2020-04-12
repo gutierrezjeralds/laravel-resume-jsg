@@ -181,30 +181,41 @@ class ExamController extends Controller
     }
 
     public function getCart(Request $request) {
-        $userId = $request->input('userId');
-        $carts = DB::table('cart')->where('user_id', $userId)->get();
-        if ( !$cart->isEmpty() ) {
-            $arr = [];
-            // Array for carts
-            foreach ( $carts as $cart ) {
-                $productId = $cart->product_id;
-                $products = DB::table('products')->where('product_id', $productId)->get();
-                if ( !$products->isEmpty() ) {
-                    foreach ( $products as $product ) {
-                        $arr[] = [
-                            'cart_id'       => $cart->id,
-                            'product_name'  => $product->name,
-                            'product_price' => $product->price,
-                            'created_at'    => $cart->created_at,
-                            'updated_at'    => $cart->updated_at
-                        ];
+        try {
+            $userId = $request->input('userId');
+            $carts = DB::table('cart')->where('user_id', $userId)->get();
+            if ( !$cart->isEmpty() ) {
+                $arr = [];
+                // Array for carts
+                foreach ( $carts as $cart ) {
+                    $productId = $cart->product_id;
+                    $products = DB::table('products')->where('product_id', $productId)->get();
+                    if ( !$products->isEmpty() ) {
+                        foreach ( $products as $product ) {
+                            $arr[] = [
+                                'cart_id'       => $cart->id,
+                                'product_name'  => $product->name,
+                                'product_price' => $product->price,
+                                'created_at'    => $cart->created_at,
+                                'updated_at'    => $cart->updated_at
+                            ];
+                        }
                     }
                 }
+
+                return response()->json($arr, 200);
             }
 
-            return response()->json($arr, 200);
-        }
+            return false;
 
-        return false;
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => $e], 200);
+        }
+    }
+
+    public function getCartCount(Request $request) {
+        $userId = $request->input('userId');
+        return DB::table('cart')->where('user_id', $userId)->count();
     }
 }
