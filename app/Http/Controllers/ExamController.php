@@ -194,6 +194,7 @@ class ExamController extends Controller
                         foreach ( $products as $product ) {
                             $arr[] = [
                                 'cart_id'           => $cart->id,
+                                'product_id'        => $product->id,
                                 'product_name'      => $product->name,
                                 'product_price'     => $product->price,
                                 'product_thumbnail' => $product->thumbnail,
