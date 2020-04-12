@@ -193,11 +193,12 @@ class ExamController extends Controller
                     if ( !$products->isEmpty() ) {
                         foreach ( $products as $product ) {
                             $arr[] = [
-                                'cart_id'       => $cart->id,
-                                'product_name'  => $product->name,
-                                'product_price' => $product->price,
-                                'created_at'    => $cart->created_at,
-                                'updated_at'    => $cart->updated_at
+                                'cart_id'           => $cart->id,
+                                'product_name'      => $product->name,
+                                'product_price'     => $product->price,
+                                'product_thumbnail' => $product->thumbnail,
+                                'created_at'        => $cart->created_at,
+                                'updated_at'        => $cart->updated_at
                             ];
                         }
                     }
@@ -210,7 +211,7 @@ class ExamController extends Controller
 
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => $e], 200);
+            return response()->json(['response' => 'fail'], 200);
         }
     }
 
