@@ -17,6 +17,7 @@ class CreateCheckoutTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
             $table->integer('product_id')->nullable();
+            $table->integer('cart_id')->nullable();
             $table->timestamps();
         });
     }
