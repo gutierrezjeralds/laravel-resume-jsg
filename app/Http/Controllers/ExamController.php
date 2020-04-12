@@ -129,6 +129,8 @@ class ExamController extends Controller
 
     public function setProduct(Request $request) {
         try {
+            $method = $request->input('method');
+            $key = $request->input('key');
             $name = $request->input('name');
             $price = $request->input('price');
             $thumbnail = $request->input('thumbnail');
