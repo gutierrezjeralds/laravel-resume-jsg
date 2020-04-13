@@ -24,6 +24,15 @@ class ExamController extends Controller
                     if ( $user->password != $pass ) {
                         $str = "incorrect";
                     } else {
+                        // Update is_active
+                        $set = DB::table("users")->updateOrInsert(
+                            ['id' => $user->id],
+                            [
+                                'is_active'     => 1
+                            ]
+                        );
+
+                        // Add login location
                         $set = DB::table('login_location')->insert(
                             [
                                 'user_id'       => $user->id,
@@ -51,6 +60,20 @@ class ExamController extends Controller
             // print_r($e);
             return response()->json(['response' => 'fail'], 200);
         }
+    }
+
+    public function isLogout(Request $request) {
+        $userId = $request->input('userId');
+
+        // Update is_active
+        $set = DB::table("users")->updateOrInsert(
+            ['id' => $userId],
+            [
+                'is_active'     => 0
+            ]
+        );
+
+        return response()->json(['response' => $set], 200);
     }
 
     public function getUsers(Request $request) {
@@ -304,6 +327,20 @@ class ExamController extends Controller
             $checkout = DB::table("checkout")->where('user_id', $userId)->delete();
 
             return response()->json(['response' => "success"], 200);
+
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail'], 200);
+        }
+    }
+
+    public function pieChartUsers(Request $request) {
+        try {
+            $active = DB::table('users')->where('is_active', 1)->count();
+            $disaAtive = DB::table('users')->where('is_active', 0)->count();
+            $arr = [ $active, $disaAtive ];
+
+            return response()->json(['response' => $arr], 200);
 
         } catch (\Exception $e) {
             // print_r($e);

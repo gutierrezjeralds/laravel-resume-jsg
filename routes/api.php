@@ -41,6 +41,7 @@ Route::group(['middleware' => ['json.response']], function () {
 
     // Exam Routes
     Route::get('/exam-login', 'ExamController@isLogin')->name('isLogin.api');
+    Route::get('/exam-logout', 'ExamController@isLogout')->name('isLogout.api');
     Route::get('/exam-users', 'ExamController@getUsers')->name('getUsers.api');
     Route::get('/exam-user-info', 'ExamController@getUserById')->name('getUserById.api');
     Route::post('/exam-command-users', 'ExamController@commandUsers')->name('commandUsers.api');
@@ -53,4 +54,5 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/exam-set-checkout', 'ExamController@setCheckout')->name('setCheckout.api');
     Route::get('/exam-get-checkout', 'ExamController@getCheckout')->name('getCheckout.api');
     Route::get('/exam-product-buy', 'ExamController@placeOrder')->name('placeOrder.api');
+    Route::get('/exam-pie-chart', 'ExamController@pieChartUsers')->name('pieChartUsers.api');
 });
