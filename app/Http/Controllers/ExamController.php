@@ -213,10 +213,9 @@ class ExamController extends Controller
                 }
 
                 return response()->json($arr, 200);
+            } else {
+                return response()->json(['response' => 'empty'], 200);
             }
-
-            return false;
-
         } catch (\Exception $e) {
             // print_r($e);
             return response()->json(['response' => 'fail'], 200);
@@ -249,10 +248,9 @@ class ExamController extends Controller
                         'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
                     ]
                 );
+            } else {
+                return response()->json(['response' => 'empty'], 200);
             }
-
-            return response()->json(['response' => "success"], 200);
-
         } catch (\Exception $e) {
             // print_r($e);
             return response()->json(['response' => $e], 200);
@@ -287,7 +285,7 @@ class ExamController extends Controller
                 return response()->json($arr, 200);
             }
 
-            return false;
+            return response()->json(['response' => 'empty'], 200);
 
         } catch (\Exception $e) {
             // print_r($e);
