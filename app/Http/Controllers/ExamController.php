@@ -267,12 +267,12 @@ class ExamController extends Controller
                 $arr = [];
                 // Array for checkouts
                 foreach ( $checkouts as $checkout ) {
-                    $productId = $cart->product_id;
+                    $productId = $checkout->product_id;
                     $products = DB::table('products')->where('id', $productId)->get();
                     if ( !$products->isEmpty() ) {
                         foreach ( $products as $product ) {
                             $arr[] = [
-                                'checkout_id'       => $cart->id,
+                                'checkout_id'       => $checkout->id,
                                 'product_id'        => $product->id,
                                 'product_name'      => $product->name,
                                 'product_price'     => $product->price,
