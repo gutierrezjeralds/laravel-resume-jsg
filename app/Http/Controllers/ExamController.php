@@ -236,7 +236,7 @@ class ExamController extends Controller
             // Delete first all checkout data by user id
             $del = DB::table("checkout")->where('user_id', $userId)->delete();
             // Add new data of checkout by user id
-            foreach ( json_decode( $datas, true ) as $data ) {
+            foreach ( $datas as $data ) {
                 $productId = $data['product_id'];
                 $cartId = $data['cart_id'];
 
