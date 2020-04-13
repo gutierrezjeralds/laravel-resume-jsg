@@ -233,29 +233,29 @@ class ExamController extends Controller
             $userId = $request->input('userId');
             $datas = $request->input('checkout');
 
-            // // Delete first all checkout data by user id
-            // $del = DB::table("checkout")->where('user_id', $userId)->delete();
-            // // Add new data of checkout by user id
-            // foreach ( $datas as $data ) {
-            //     $productId = $data['product_id'];
-            //     $cartId = $data['cart_id'];
+            // Delete first all checkout data by user id
+            $del = DB::table("checkout")->where('user_id', $userId)->delete();
+            // Add new data of checkout by user id
+            foreach ( $datas as $data ) {
+                $productId = $data['product_id'];
+                $cartId = $data['cart_id'];
 
-            //     $set = DB::table('checkout')->insert(
-            //         [
-            //             'user_id'       => $userId,
-            //             'product_id'    => $productId,
-            //             'cart_id'       => $cartId,
-            //             'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
-            //             'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
-            //         ]
-            //     );
-            // }
+                $set = DB::table('checkout')->insert(
+                    [
+                        'user_id'       => $userId,
+                        'product_id'    => $productId,
+                        'cart_id'       => $cartId,
+                        'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                    ]
+                );
+            }
 
-            return response()->json(['response' => $userId], 200);
+            return response()->json(['response' => "success"], 200);
 
         } catch (\Exception $e) {
             // print_r($e);
-            return response()->json(['response' => 'fail'], 200);
+            return response()->json(['response' => $e], 200);
         }
     }
 
