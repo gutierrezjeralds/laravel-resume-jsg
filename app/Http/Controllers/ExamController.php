@@ -334,13 +334,23 @@ class ExamController extends Controller
         }
     }
 
-    public function pieChartUsers(Request $request) {
+    public function chartUsers(Request $request) {
         try {
-            $active = DB::table('users')->where('is_active', 1)->count();
-            $disaAtive = DB::table('users')->where('is_active', 0)->count();
-            $arr = [ $active, $disaAtive ];
+            $chart = $request->input('chart');
 
-            return response()->json(['response' => $arr], 200);
+            if ( $chart == "pie" ) {
+                $active = DB::table('users')->where('is_active', 1)->count();
+                $disaAtive = DB::table('users')->where('is_active', 0)->count();
+                $arr = [ $active, $disaAtive ];
+    
+                return response()->json(['response' => $arr], 200);
+
+            } else if ( $chart == "line" ) {
+                // Do Nothing
+                
+            } else {
+                return response()->json(['response' => 'empty'], 200);
+            }
 
         } catch (\Exception $e) {
             // print_r($e);

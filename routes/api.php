@@ -54,5 +54,5 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::post('/exam-set-checkout', 'ExamController@setCheckout')->name('setCheckout.api');
     Route::get('/exam-get-checkout', 'ExamController@getCheckout')->name('getCheckout.api');
     Route::get('/exam-product-buy', 'ExamController@placeOrder')->name('placeOrder.api');
-    Route::get('/exam-pie-chart', 'ExamController@pieChartUsers')->name('pieChartUsers.api');
+    Route::get('/exam-user-chart', 'ExamController@chartUsers')->name('chartUsers.api');
 });
