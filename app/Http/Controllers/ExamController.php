@@ -368,8 +368,8 @@ class ExamController extends Controller
                 foreach ( $users as $user ) {
                     $new = 0;
                     if ( $date !== null ) {
-                        $time = strtotime($date);
-                        if ( $user->updated_at > date('Y-m-d H:i:s', $time) ) {
+                        $fromBe = strtotime($user->updated_at);
+                        if ( $fromBe > $date ) {
                             $new = 1;
                         }
                     }
