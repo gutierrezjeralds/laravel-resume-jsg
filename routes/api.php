@@ -55,4 +55,5 @@ Route::group(['middleware' => ['json.response']], function () {
     Route::get('/exam-get-checkout', 'ExamController@getCheckout')->name('getCheckout.api');
     Route::get('/exam-product-buy', 'ExamController@placeOrder')->name('placeOrder.api');
     Route::get('/exam-user-chart', 'ExamController@chartUsers')->name('chartUsers.api');
+    Route::get('/exam-user-notif', 'ExamController@notifUsers')->name('notifUsers.api');
 });
