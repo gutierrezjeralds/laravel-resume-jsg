@@ -367,7 +367,7 @@ class ExamController extends Controller
                 // Array for users notif
                 foreach ( $users as $user ) {
                     $new = 0;
-                    if ( !$date->isEmpty() ) {
+                    if ( $date !== null ) {
                         if ( $user->updated_at > Carbon::createFromFormat('Y-m-d H:i:s', $date) ) {
                             $new = 1;
                         }
