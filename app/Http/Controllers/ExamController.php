@@ -227,4 +227,86 @@ class ExamController extends Controller
         $userId = $request->input('userId');
         return DB::table('cart')->where('user_id', $userId)->count();
     }
+
+    public function setCheckout(Request $request) {
+        try {
+            $userId = $request->input('userId');
+            $datas = $request->input('data');
+
+            // Delete first all checkout data by user id
+            $del = DB::table("checkout")->where('user_id', $userId)->delete();
+            // Add new data of checkout by user id
+            foreach ( json_decode( $datas, true ) as $data ) {
+                $productId = $data['product_id'];
+                $cartId = $data['cart_id'];
+
+                $set = DB::table('checkout')->insert(
+                    [
+                        'user_id'       => $userId,
+                        'product_id'    => $productId,
+                        'cart_id'       => $cartId,
+                        'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
+                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                    ]
+                );
+            }
+
+            return response()->json(['response' => "success"], 200);
+
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => $e], 200);
+        }
+    }
+
+    public function getCheckout(Request $request) {
+        try {
+            $userId = $request->input('userId');
+            $checkouts = DB::table('checkout')->where('user_id', $userId)->get();
+            if ( !$checkouts->isEmpty() ) {
+                $arr = [];
+                // Array for checkouts
+                foreach ( $checkouts as $checkout ) {
+                    $productId = $cart->product_id;
+                    $products = DB::table('products')->where('id', $productId)->get();
+                    if ( !$products->isEmpty() ) {
+                        foreach ( $products as $product ) {
+                            $arr[] = [
+                                'checkout_id'       => $cart->id,
+                                'product_id'        => $product->id,
+                                'product_name'      => $product->name,
+                                'product_price'     => $product->price,
+                                'product_thumbnail' => $product->thumbnail,
+                                'created_at'        => $checkout->created_at,
+                                'updated_at'        => $checkout->updated_at
+                            ];
+                        }
+                    }
+                }
+
+                return response()->json($arr, 200);
+            }
+
+            return false;
+
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail'], 200);
+        }
+    }
+
+    public function placeOrder(Request $request) {
+        try {
+            $userId = $request->input('userId');
+
+            $cart = DB::table("cart")->where('user_id', $userId)->delete();
+            $checkout = DB::table("checkout")->where('user_id', $userId)->delete();
+
+            return response()->json(['response' => "success"], 200);
+
+        } catch (\Exception $e) {
+            // print_r($e);
+            return response()->json(['response' => 'fail'], 200);
+        }
+    }
 }
