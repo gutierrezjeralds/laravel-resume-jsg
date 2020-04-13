@@ -251,7 +251,7 @@ class ExamController extends Controller
             //     );
             // }
 
-            return response()->json(['response' => "success"], 200);
+            return response()->json(['response' => $userId], 200);
 
         } catch (\Exception $e) {
             // print_r($e);
