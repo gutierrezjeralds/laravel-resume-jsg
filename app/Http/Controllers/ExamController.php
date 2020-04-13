@@ -368,7 +368,8 @@ class ExamController extends Controller
                 foreach ( $users as $user ) {
                     $new = 0;
                     if ( $date !== null ) {
-                        if ( $user->updated_at > Carbon::createFromFormat('Y-m-d H:i:s', $date) ) {
+                        $time = strtotime($date);
+                        if ( $user->updated_at > date('Y-m-d H:i:s', $time) ) {
                             $new = 1;
                         }
                     }
