@@ -94,6 +94,7 @@ class ExamController extends Controller
             $name = $request->input('name');
             $email = $request->input('email');
             $pass = $request->input('pass');
+            $date = $request->input('date');
 
             // Minimize the response return if possible
     
@@ -119,11 +120,12 @@ class ExamController extends Controller
                 }
     
             } else if ( $method == "edit" ) {
+                $dateTime = new DateTime($date);
                 $set = DB::table('users')->updateOrInsert(
                     ['id' => $key],
                     [
                         'name'          => $name,
-                        'updated_at'    => Carbon::now()->format('Y-m-d H:i:s')
+                        'updated_at'    => $dateTime->format('Y-m-d H:i:s')
                     ]
                 );
         
@@ -360,28 +362,31 @@ class ExamController extends Controller
 
     public function notifUsers(Request $request) {
         try {
+            $userId = $request->input('userId');
             $date = $request->input('date');
             $users = DB::table('users')->whereColumn('updated_at', '>', 'created_at')->orderBy('updated_at', 'desc')->get();
             if ( !$users->isEmpty() ) {
                 $arr = [];
                 // Array for users notif
                 foreach ( $users as $user ) {
-                    $new = 0;
-                    if ( $date !== null ) {
-                        $fromBe = strtotime($user->updated_at);
-                        if ( $fromBe > $date ) {
-                            $new = 1;
+                    if ( $userId != $user->id) {
+                        $new = 0;
+                        if ( $date !== null ) {
+                            $fromBe = strtotime($user->updated_at);
+                            if ( $fromBe > $date ) {
+                                $new = 1;
+                            }
                         }
+    
+                        // Array
+                        $arr[] = [
+                            'user_id'       => $user->id,
+                            'name'          => $user->name,
+                            'email'         => $user->email,
+                            'updated_at'    => $user->updated_at,
+                            'new'           => $new
+                        ];
                     }
-
-                    // Array
-                    $arr[] = [
-                        'user_id'       => $user->id,
-                        'name'          => $user->name,
-                        'email'         => $user->email,
-                        'updated_at'    => $user->updated_at,
-                        'new'           => $new
-                    ];
                 }
             
                 return response()->json(['response' => $arr], 200);
