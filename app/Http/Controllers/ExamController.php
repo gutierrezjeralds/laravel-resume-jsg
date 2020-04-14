@@ -374,7 +374,8 @@ class ExamController extends Controller
                         $new = 0;
                         if ( $date !== null ) {
                             $fromBe = strtotime($user->updated_at);
-                            if ( $fromBe > $date ) {
+                            $fromFe = strtotime($date);
+                            if ( $fromBe > $fromFe ) {
                                 $new = 1;
                             }
                         }
